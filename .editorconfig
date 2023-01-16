@@ -15,7 +15,7 @@ trim_trailing_whitespace = false
 [*.{css,js,json,ts,svg,xml,yml,yaml}]
 indent_size = 2
 
-[resources/**.conf]
+[scripts/**.conf]
 indent_style = tab
 
 [docker-compose.yml]
