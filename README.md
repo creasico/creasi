@@ -1,13 +1,19 @@
-[![Actions Status](https://github.com/creasico/laravel-project/actions/workflows/main.yml/badge.svg)](https://github.com/creasico/laravel-project/actions)
+[![Actions Status](https://github.com/creasico/creasi/actions/workflows/main.yml/badge.svg)](https://github.com/creasico/creasi/actions)
 
-# Application Skeleton
+# Internal Management System
+
+:construction: Under Heavy Development :construction:
 
 ## Requirements
 
-- PHP `>= v8.0` and Composer `>= v2.0`
+- PHP `>= v8.1` and Composer `>= v2.0`
 - Node.js `>= v16.0` and PNPM `v7.x`
-- Database Server (MySQL, MariaDB or PostgreSQL)
+- PostgreSQL `>= v14`
+
+## Sponsors
+
+[![BrowserStack Logo](https://raw.githubusercontent.com/creasico/creasico.github.io/master/public/assets/browserstack-logo.png)](https://browserstack.com)
 
 ## License
 
-The Application will be open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+The project is an open-source software licensed under the [MIT license](https://opensource.org/licenses/MIT).
