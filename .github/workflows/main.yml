@@ -259,7 +259,7 @@ jobs:
 
     environment:
       name: staging
-      url: https://skeleton.creasi.dev
+      url: https://internal.creasi.dev
 
     steps:
       - name: Checkout

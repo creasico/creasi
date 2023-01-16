@@ -6,7 +6,7 @@ require 'recipe/laravel.php';
 
 // Config
 
-set('repository', 'git@github.com:creasico/laravel-project.git');
+set('repository', 'git@github.com:creasico/creasi.git');
 
 add('shared_files', []);
 add('shared_dirs', ['public/vendor']);
@@ -16,7 +16,7 @@ add('writable_dirs', ['storage']);
 
 host('creasi.dev')
     ->set('remote_user', 'creasi')
-    ->set('deploy_path', '/var/www/skeleton');
+    ->set('deploy_path', '/var/www/internal');
 
 // Tasks
 
