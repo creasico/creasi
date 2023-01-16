@@ -5,8 +5,8 @@ import { defineConfig } from 'windicss/helpers'
 export default defineConfig({
   extract: {
     include: [
-      'resources/client/**/*.{vue,js,ts}',
-      'resources/views/**/*.blade.php',
+      ',/resources/client/**/*.{vue,js,ts}',
+      './resources/views/**/*.blade.php',
     ],
     exclude: ['node_modules', '.git'],
   },

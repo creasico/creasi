@@ -45,3 +45,4 @@ yarn.lock
 !.env.*.example
 !.htaccess
 !.gitkeep
+.vercel
