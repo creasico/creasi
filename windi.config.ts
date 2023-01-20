@@ -7,6 +7,7 @@ export default defineConfig({
     include: [
       'resources/client/**/*.{vue,js,ts}',
       'resources/views/**/*.blade.php',
+      'resources/js/**/*.{vue}',
     ],
     exclude: ['node_modules', '.git'],
   },

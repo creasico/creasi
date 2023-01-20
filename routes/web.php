@@ -1,9 +1,12 @@
 <?php
 
 use App\Http\Controllers;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Providers\RouteServiceProvider;
+use Illuminate\Foundation\Application;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Inertia\Inertia;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,12 +18,15 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 Route::middleware('auth')->group(function () {
     Route::get(RouteServiceProvider::HOME, function (Request $request) {
-        return $request->isJson() ? response(404) : view('dashboard');
+        return Inertia::render('Welcome', [
+            'canLogin' => Route::has('login'),
+            'canRegister' => Route::has('register'),
+            'laravelVersion' => Application::VERSION,
+            'phpVersion' => PHP_VERSION,
+        ]);
     })->name('home');
-
     Route::controller(Controllers\UserController::class)->prefix('users')->group(function () {
         Route::get('', 'index')->name('users.home');
         Route::get('create', 'create')->name('users.create');
