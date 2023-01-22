@@ -1,6 +1,5 @@
 [![Actions Status](https://github.com/creasico/creasi/actions/workflows/main.yml/badge.svg)](https://github.com/creasico/creasi/actions)
 
-
 # Internal Management System
 
 :construction: Under Heavy Development :construction:
