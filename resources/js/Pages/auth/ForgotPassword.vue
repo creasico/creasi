@@ -5,9 +5,6 @@ import InputError from '@/Components/InputError.vue'
 import InputLabel from '@/Components/InputLabel.vue'
 import PrimaryButton from '@/Components/PrimaryButton.vue'
 import TextInput from '@/Components/TextInput.vue'
-</script>
-
-<script>
 defineProps({
   status: String,
 })
@@ -19,6 +16,9 @@ const form = useForm({
 const submit = () => {
   form.post(route('password.email'))
 }
+</script>
+
+<script>
 export default {
   components: { InputError, InputLabel, PrimaryButton, TextInput, Head },
   layout: GuestLayout,

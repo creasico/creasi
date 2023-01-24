@@ -9,6 +9,7 @@ import InputError from '../../components/InputError.vue'
 
 <script>
 import GuestLayout from '../../Shared/GuestLayout.vue'
+
 defineProps({
   canResetPassword: Boolean,
   status: String,
