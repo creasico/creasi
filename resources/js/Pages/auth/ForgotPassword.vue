@@ -29,8 +29,7 @@ export default {
   <Head title="Forgot Password" />
 
   <div class="mb-4 text-sm text-gray-600">
-    Forgot your password? No problem. Just let us know your email address and we will email you a password reset
-    link that will allow you to choose a new one.
+    {{ $t('auth.notices.forgot-password') }}
   </div>
 
   <div v-if="status" class="mb-4 font-medium text-sm text-green-600">
@@ -56,7 +55,7 @@ export default {
 
     <div class="flex items-center justify-end mt-4">
       <PrimaryButton class="text-white bg-emerald-700 hover:bg-emerald-600 focus:bg-emerald-600 active:bg-emerald-800 px-2 py-3" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-        Email Password Reset Link
+        {{ $t('auth.actions.request') }}
       </PrimaryButton>
     </div>
   </form>

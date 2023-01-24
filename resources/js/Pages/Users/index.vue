@@ -17,13 +17,13 @@ export default {
     <thead>
       <tr>
         <th class="w-4/8 text-left">
-          {{ $t('') }}
+          {{ $t('users.table.name') }}
         </th>
         <th class="w-3/8 text-left">
-          Email
+          {{ $t('users.table.email') }}
         </th>
         <th class="action">
-          Action
+          {{ $t('actions.tables.column') }}
         </th>
       </tr>
     </thead>
@@ -50,7 +50,7 @@ export default {
       </tr>
       <tr v-if="users.length === 0">
         <td colspan="3">
-          Data not found
+          {{ $t('users.table.fields') }}
         </td>
       </tr>
     </tbody>

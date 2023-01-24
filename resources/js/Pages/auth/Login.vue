@@ -7,21 +7,8 @@ import PrimaryButton from '../../components/PrimaryButton.vue'
 import Checkbox from '../../components/Checkbox.vue'
 import InputError from '../../components/InputError.vue'
 
-defineProps({
-  canResetPassword: Boolean,
-  status: String,
-})
-const form = useForm({
-  username: '',
-  password: '',
-})
-
-const submit = () => {
-  form.post('/login')
-}
 export default {
-  layout: GuestLayout,
-  component:
+  components:
   {
     Link,
     InputLabel,
@@ -30,6 +17,23 @@ export default {
     Checkbox,
     InputError,
     Head,
+  },
+  layout: GuestLayout,
+  props: {
+    canResetPassword: Boolean,
+    status: String,
+  },
+  setup() {
+    const form = useForm({
+      username: '',
+      password: '',
+    })
+
+    const submit = () => {
+      form.post('/login')
+    }
+
+    return { form, submit }
   },
 }
 </script>

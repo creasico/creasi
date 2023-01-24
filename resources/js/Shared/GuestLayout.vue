@@ -20,6 +20,6 @@ export default {
 
 <style>
 #background {
-    background-image:  url('../Pages/image/app-bg.jpeg')
+    background-image:  url('/image/app-bg.jpeg')
 }
 </style>
