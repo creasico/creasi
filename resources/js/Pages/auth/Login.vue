@@ -1,14 +1,11 @@
-<script setup>
+<script>
 import { Head, Link, useForm } from '@inertiajs/vue3'
+import GuestLayout from '../../Shared/GuestLayout.vue'
 import InputLabel from '../../components/InputLabel.vue'
 import TextInput from '../../components/TextInput.vue'
 import PrimaryButton from '../../components/PrimaryButton.vue'
 import Checkbox from '../../components/Checkbox.vue'
 import InputError from '../../components/InputError.vue'
-</script>
-
-<script>
-import GuestLayout from '../../Shared/GuestLayout.vue'
 
 defineProps({
   canResetPassword: Boolean,
