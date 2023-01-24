@@ -1,13 +1,17 @@
 <script>
+import { Head } from '@inertiajs/vue3'
+import Layout from '../../Shared/Layout.vue'
 export default {
-  name: 'Dashboard',
+  components: { Head },
+  layout: Layout,
 }
 </script>
 
 <template>
+  <Head title="Creasi Internal - Dashboard" />
   <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg sm:border border-gray-200 p-6">
     <h3 class="">
-      Selamat datang {{ $page.props.auth.user.name }}
+      {{ $t('dashboard.welcome-notice') }} {{ $page.props.auth.user.name }}
     </h3>
   </div>
 </template>

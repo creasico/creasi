@@ -20,7 +20,8 @@
     "alpinejs": "^3.11.1",
     "axios": "^1.2.3",
     "date-fns": "^2.29.3",
-    "vue": "^3.2.45"
+    "vue": "^3.2.45",
+    "vue-i18n": "9.3.0-beta.16"
   },
   "devDependencies": {
     "@antfu/eslint-config-vue": "^0.27.0",
@@ -63,6 +64,9 @@
       "node": true,
       "browser": true
     },
-    "extends": "@antfu/vue"
+    "extends": "@antfu/vue",
+    "rules": {
+      "vue/no-reserved-component-names": "off"
+    }
   }
 }

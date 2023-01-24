@@ -2,6 +2,7 @@
 
 use App\Http\Controllers;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Application;
 use Illuminate\Http\Request;
@@ -20,7 +21,7 @@ use Inertia\Inertia;
 */
 Route::middleware('auth')->group(function () {
     Route::get(RouteServiceProvider::HOME, function (Request $request) {
-        return Inertia::render('Welcome', [
+        return Inertia::render('auth/Dashboard', [
             'canLogin' => Route::has('login'),
             'canRegister' => Route::has('register'),
             'laravelVersion' => Application::VERSION,

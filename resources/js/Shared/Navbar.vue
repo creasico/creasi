@@ -1,19 +1,10 @@
-<script setup>
-import { Link } from '@inertiajs/vue3'
-</script>
-
 <script>
+import { Link } from '@inertiajs/vue3'
 export default {
-  name: Nav,
+
+  components: { Link },
   data() {
-    return {
-      visible: false,
-    }
-  },
-  methods: {
-    toggle() {
-      this.visible = !this.visible
-    },
+    return { visible: false }
   },
 }
 </script>
@@ -30,17 +21,25 @@ export default {
         </Link>
       </header>
       <nav class="flex flex-col gap-1" role="navigation">
-        <Link class="inline-flex text-gray-600 text-sm leading-7 items-center font-bold py-2 px-4 border-r-3 leading-5 focus:outline-none transition duration-150 ease-in-out text-primary bg-emerald-50 border-emerald-600 focus:border-emerald-700" href="/">
-          Dashboard
+        <Link
+          class="inline-flex text-gray-600 text-sm leading-7 items-center font-bold py-2 px-4
+                              leading-5 focus:outline-none transition duration-150 ease-in-out"
+          :class="{ 'text-primary bg-emerald-50 border-emerald-600 focus:border-emerald-700 border-r-3': $page.url === '/' }" href="/"
+        >
+          {{ $t('dashboard.routes.index') }}
         </Link>
-        <Link class="inline-flex text-gray-600 text-sm leading-7 items-center font-bold py-2 px-4 border-r-3 leading-5 focus:outline-none transition duration-150 ease-in-out border-transparent hover:bg-gray-100 hover:text-gray-700 hover:border-gray-300 focus:text-gray-700 focus:border-gray-300" href="/users">
-          Semua Pengguna
+        <Link
+          class="inline-flex text-gray-600 text-sm leading-7 items-center font-bold py-2 px-4
+                            leading-5 focus:outline-none transition duration-150 ease-in-out"
+          :class="{ 'text-primary bg-emerald-50 border-emerald-600 focus:border-emerald-700 border-r-3': $page.url === '/users' }" href="/users"
+        >
+          {{ $t('users.routes.index') }}
         </Link>
       </nav>
     </div>
-    <footer class="w-full flex-grow-0 flex-shrink-0 p-2" @click="toggle()">
+    <footer class="w-full flex-grow-0 flex-shrink-0 p-2" @click="visible = !visible">
       <div class="relative">
-        <button class="flex gap-1 items-center focus:outline-none focus:text-gray-700 select-none justify-between w-full cursor-pointer" type="button">
+        <button class="flex gap-1 items-center focus:outline-none focus:text-gray-700 select-none justify-between w-full cursor-pointer">
           <div class="font-medium px-2 text-left">
             <div class="text-base text-gray-800">
               {{ $page.props.auth.user.name }}
@@ -53,19 +52,22 @@ export default {
             <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
           </svg>
         </button>
-        <div>
-          <div class="absolute z-50 w-48 rounded-md shadow-lg origin-top-right right-0">
-            <div class="rounded-md ring-1 ring-black ring-opacity-5 py-1 bg-white">
-              <a class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out" x-bind:href="'#'">Account</a>
-              <form method="POST" action="/logout">
-                <Link
-                  class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out"
-                  href="/logout"
-                >
-                  Keluar
-                </Link>
-              </form>
-            </div>
+
+        <div v-show="visible" class="absolute z-50 w-48 rounded-md shadow-lg origin-top-right right-0" style="bottom: 52px; left: 8px;">
+          <div class="rounded-md ring-1 ring-black ring-opacity-5 py-1 bg-white">
+            <Link
+              class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100
+                    focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out" href=""
+            >
+              Account
+            </Link>
+            <Link
+              class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100
+                            focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out"
+              href="/logout" method="post" as="button"
+            >
+              {{ $t('auth.actions.logout') }}
+            </Link>
           </div>
         </div>
       </div>

@@ -1,39 +1,7 @@
-<script setup>
-import { Link } from '@inertiajs/vue3'
-</script>
-
 <script>
+import { Link } from '@inertiajs/vue3'
 export default {
-  name: 'ApplicationLogo',
-  props: {
-    theme: primary,
-    // eslint-disable-next-line vue/require-prop-type-constructor
-    square: false,
-    // eslint-disable-next-line vue/require-prop-type-constructor
-    initial: false,
-    width: null,
-    height: null,
-  },
-}
-const colors = {
-  primary: {
-    square: {
-      rect: '#388370',
-      creasi: 'white',
-    },
-    base: {
-      creasi: '#388370',
-    },
-  },
-  secondary: {
-    square: {
-      rect: 'white',
-      creasi: '#388370',
-    },
-    base: {
-      creasi: 'white',
-    },
-  },
+  components: { Link },
 }
 </script>
 
