@@ -49,8 +49,8 @@ export default {
         </td>
       </tr>
       <tr v-if="users.length === 0">
-        <td colspan="3">
-          {{ $t('users.table.fields') }}
+        <td colspan="3" class="text-center">
+          {{ $t('users.table.result') }}
         </td>
       </tr>
     </tbody>

@@ -67,6 +67,7 @@ export default {
       table: {
         name: 'Nama',
         email: 'Email',
+        result: 'Data Not Found',
       },
       fields: [],
     },
@@ -270,6 +271,7 @@ export default {
       table: {
         name: 'Nama',
         email: 'Email',
+        result: 'Data Tidak ada',
       },
       fields: [],
     },
