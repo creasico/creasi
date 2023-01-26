@@ -2,8 +2,10 @@
 import { Link } from '@inertiajs/vue3'
 export default {
   components: {
-
     Link,
+  },
+  data() {
+    return { langs: ['id', 'en'] }
   },
 }
 </script>
@@ -11,7 +13,7 @@ export default {
 <template>
   <div>
     <div class="bg-white w-full shadow">
-      <div class="flex items-center container-fluid gap-2 py-3 px-3 sm:px-6">
+      <div class="flex items-center justify-between container-fluid gap-2 py-3 px-3 sm:px-6">
         <Link href="/" class="rounded-md overflow-hidden sm:hidden">
           <svg width="40" height="40" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect fill="#388370" width="512" height="512" />
@@ -26,6 +28,13 @@ export default {
             <path class="inline-flex" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
           </svg>
         </button>
+        <div>
+          <select v-model="$i18n.locale" class="rounded-md py-2 items-center">
+            <option v-for="(lang, i) in langs" :key="`Lang${i}`" :value="lang">
+              {{ lang === 'id' ? 'ID' : 'EN' }}
+            </option>
+          </select>
+        </div>
       </div>
     </div>
   </div>

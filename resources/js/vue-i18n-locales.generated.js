@@ -65,7 +65,7 @@ export default {
         index: 'All Users',
       },
       table: {
-        name: 'Nama',
+        name: 'Name',
         email: 'Email',
         result: 'Data Not Found',
       },
