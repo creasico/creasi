@@ -30,7 +30,25 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('users.form');
+        return Inertia::render('Users/Create');
+        // return view('users.form');
+    }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email',
+            'password' => 'required|min:8',
+        ]);
+
+        User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => bcrypt($request->password),
+        ]);
+
+        return Redirect::route('users.home');
     }
 
     /**
