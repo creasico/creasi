@@ -1,10 +1,12 @@
 <script>
-import { Head, Link } from '@inertiajs/vue3'
+import { Head, Link, router } from '@inertiajs/vue3'
 import Layout from '../../Shared/Layout.vue'
 export default {
   components: { Head, Link },
   layout: Layout,
-  props: { users: Array },
+  props: {
+    user: Object,
+  },
   data() {
     return {
       currentId: '',
@@ -16,12 +18,15 @@ export default {
       this.isVisible = !this.isVisible
       this.currentId = id
     },
+    handleDelete(id) {
+      router.delete(`/users/${id}/delete`)
+    },
   },
 }
 </script>
 
 <template>
-  <Head title="Creasi Internal - Semua Pengguna " />
+  <Head title="Creasi Internal - Detail Pengguna " />
   <table class="table">
     <thead>
       <tr>
@@ -37,7 +42,7 @@ export default {
       </tr>
     </thead>
     <tbody class="border rounded-lg">
-      <tr v-for="user in users" :key="user.id" class="no-content">
+      <tr class="no-content">
         <td> {{ user.name }} </td>
         <td> {{ user.email }} </td>
         <td class="action" @click="toggleVisible(user.id)">
@@ -48,16 +53,19 @@ export default {
               </svg>
               <div @click="toggleVisible">
                 <div v-if="currentId === user.id && isVisible">
-                  <Link :href="`/users/${user.id}/show`" class="block px-2 py-5 text-sm leading-5 text-green-600 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out">
-                    Detail
+                  <Link :href="`/users/${user.id}/edit`" class="block px-2 py-5 text-sm leading-5 text-green-600 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out">
+                    Edit
                   </Link>
+                  <button class="bg-transparent text-green-600 block px-2 py-5 text-sm leading-5 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out" @click="handleDelete(`${user.id}`)">
+                    Delete
+                  </button>
                 </div>
               </div>
             </div>
           </div>
         </td>
       </tr>
-      <tr v-if="users.length === 0">
+      <tr v-if="user.length === 0">
         <td colspan="3" class="text-center">
           {{ $t('users.table.result') }}
         </td>
@@ -65,3 +73,7 @@ export default {
     </tbody>
   </table>
 </template>
+
+<style>
+
+</style>

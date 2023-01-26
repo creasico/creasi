@@ -31,6 +31,9 @@ Route::middleware('auth')->group(function () {
     Route::controller(Controllers\UserController::class)->prefix('users')->group(function () {
         Route::get('', 'index')->name('users.home');
         Route::get('create', 'create')->name('users.create');
-        Route::get('{user}', 'edit')->name('users.edit');
+        Route::get('{user}/show', 'show')->name('users.show');
+        Route::get('{user}/edit', 'edit')->name('users.edit');
+        Route::put('{user}/edit', 'update')->name('users.update');
+        Route::delete('{user}/delete', 'destroy')->name('users.destroy');
     });
 });

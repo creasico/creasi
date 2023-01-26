@@ -1,27 +1,27 @@
-<script setup>
+<script>
 import { Head, useForm } from '@inertiajs/vue3'
 import GuestLayout from '../../Shared/GuestLayout.vue'
 import InputError from '@/Components/InputError.vue'
 import InputLabel from '@/Components/InputLabel.vue'
 import PrimaryButton from '@/Components/PrimaryButton.vue'
 import TextInput from '@/Components/TextInput.vue'
-defineProps({
-  status: String,
-})
-
-const form = useForm({
-  email: '',
-})
-
-const submit = () => {
-  form.post(route('password.email'))
-}
-</script>
-
-<script>
 export default {
   components: { InputError, InputLabel, PrimaryButton, TextInput, Head },
   layout: GuestLayout,
+  props: {
+    status: String,
+  },
+  setup() {
+    const form = useForm({
+      email: '',
+    })
+
+    const submit = () => {
+      form.post(route('password.email'))
+    }
+
+    return { form, submit }
+  },
 }
 </script>
 
