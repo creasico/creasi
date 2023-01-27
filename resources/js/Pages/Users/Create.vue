@@ -4,15 +4,20 @@ import Layout from '../../Shared/Layout.vue'
 import PrimaryButton from '../../components/PrimaryButton.vue'
 import InputLabel from '../../components/InputLabel.vue'
 import TextInput from '../../components/TextInput.vue'
+import InputError from '../../components/InputError.vue'
 
 export default {
-  components: { InputLabel, TextInput, Head, PrimaryButton },
+  components: { InputLabel, TextInput, Head, PrimaryButton, InputError },
   layout: Layout,
+  props: {
+    errors: Object,
+  },
   setup() {
     const form = useForm({
       name: '',
       email: '',
       password: '',
+      password_confirmation: '',
     })
 
     const submit = () => {
@@ -21,12 +26,11 @@ export default {
 
     return { form, submit }
   },
-
 }
 </script>
 
 <template>
-  <Head title="Creasi Internal - Edit Pengguna " />
+  <Head title="Creasi Internal - Create Pengguna " />
   <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg sm:border border-gray-200">
     <div class="p-6 justify-center">
       <div class="flex flex-col">
@@ -41,9 +45,10 @@ export default {
               v-model="form.name"
               type="text"
               class="mt-1 block w-full"
-              required
               autofocus
             />
+
+            <InputError class="mt-3" :message="errors.name" />
           </div>
           <div class="mt-4">
             <InputLabel for="email" class="font-semibold text-md">
@@ -56,6 +61,8 @@ export default {
               type="email"
               class="mt-1 block w-full"
             />
+
+            <InputError class="mt-3" :message="errors.email" />
           </div>
           <div class="mt-4">
             <InputLabel for="password" class="font-semibold text-md">
@@ -68,6 +75,21 @@ export default {
               type="password"
               class="mt-1 block w-full"
             />
+            <InputError class="mt-3" :message="errors.password" />
+          </div>
+
+          <div class="mt-4">
+            <InputLabel for="password_confirmation" class="font-semibold text-md">
+              {{ $t('auth.fields.confirm_password') }}
+            </InputLabel>
+
+            <TextInput
+              id="password_confirmation"
+              v-model="form.password_confirmation"
+              type="password"
+              class="mt-1 block w-full"
+            />
+            <InputError class="mt-3" :message="errors.password_confirmation" />
           </div>
           <div class="flex items-center justify-between mt-4">
             <PrimaryButton class="inline-flex items-center font-semibold transition ease-in-out duration-150 border border-transparent rounded hover:shadow focus:ring-opacity-40 focus:outline-opacity-60 disabled:opacity-25 select-none px-4 py-2 text-white bg-emerald-700 hover:bg-emerald-600 focus:bg-emerald-600 active:bg-emerald-800 focus:outline-emerald-500 hover:border-emerald-700 focus:border-emerald-700 focus:border-emerald-900">
