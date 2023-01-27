@@ -34,6 +34,13 @@ export default {
         >
           {{ $t('users.routes.index') }}
         </Link>
+        <Link
+          class="inline-flex text-gray-600 text-sm leading-7 items-center font-bold py-2 px-4
+                            leading-5 focus:outline-none transition duration-150 ease-in-out"
+          :class="{ 'text-primary bg-emerald-50 border-emerald-600 focus:border-emerald-700 border-r-3': $page.url === '/roles' }" href="/roles"
+        >
+          Role & Permission
+        </Link>
       </nav>
     </div>
     <footer class="w-full flex-grow-0 flex-shrink-0 p-2" @click="visible = !visible">
@@ -58,7 +65,7 @@ export default {
               class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100
                     focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out" href=""
             >
-              Account
+              {{ $t('auth.actions.account') }}
             </Link>
             <Link
               class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100

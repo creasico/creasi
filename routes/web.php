@@ -2,6 +2,7 @@
 
 use App\Http\Controllers;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\RolesController;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Application;
@@ -37,4 +38,6 @@ Route::middleware('auth')->group(function () {
         Route::put('{user}/edit', 'update')->name('users.update');
         Route::delete('{user}/delete', 'destroy')->name('users.destroy');
     });
+
+    Route::resource('roles', RolesController::class);
 });

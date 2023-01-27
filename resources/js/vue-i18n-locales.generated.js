@@ -41,6 +41,7 @@ export default {
         resend: 'Resend Verification Email',
         request: 'Email Password Reset Link',
         logout: 'Log out',
+        account: 'Account',
       },
     },
     'dashboard': {
@@ -245,6 +246,7 @@ export default {
         resend: 'Kirim Ulang Email Verifikasi',
         request: 'Tautan Reset Kata Sandi',
         logout: 'Keluar',
+        account: 'Akun',
       },
     },
     'dashboard': {
