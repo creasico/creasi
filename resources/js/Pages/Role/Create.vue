@@ -21,7 +21,7 @@ export default {
     <div class="p-6 justify-center">
       <form>
         <div class="flex">
-          <div class="flex-inline w-3/8">
+          <div class="flex-inline w-4/8">
             <InputLabel class="font-semibold text-md">
               Role Pengguna
             </InputLabel><br>
@@ -38,18 +38,6 @@ export default {
             </select>
           </div>
 
-          <div class="flex-inline w-3/8">
-            <InputLabel class="font-semibold text-md">
-              Nama Pengguna
-            </InputLabel><br>
-            <select class="bg-white border border-gray-400 py-2 px-3 rounded-lg focus:outline-none w-5/8">
-              <template v-for="user in users" :key="user.id">
-                <option value="">
-                  {{ user.name }}
-                </option>
-              </template>
-            </select>
-          </div>
           <div class="flex-inline px-4 w-4/8">
             <table class="table">
               <thead>
