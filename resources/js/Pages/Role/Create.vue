@@ -25,7 +25,7 @@ export default {
             <InputLabel class="font-semibold text-md">
               Role Pengguna
             </InputLabel><br>
-            <select class="bg-white border border-gray-400 py-2 px-3 rounded-lg focus:outline-none w-full">
+            <select class="bg-white border border-gray-400 py-2 px-2 rounded-lg focus:outline-none w-full">
               <option value="owner">
                 Owner
               </option>
