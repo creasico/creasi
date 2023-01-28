@@ -25,7 +25,7 @@ export default {
             <InputLabel class="font-semibold text-md">
               Role Pengguna
             </InputLabel><br>
-            <select class="bg-white border border-gray-400 py-2 px-3 rounded-lg focus:outline-none w-4/8">
+            <select class="bg-white border border-gray-400 py-2 px-3 rounded-lg focus:outline-none w-full">
               <option value="owner">
                 Owner
               </option>
@@ -38,7 +38,7 @@ export default {
             </select>
           </div>
 
-          <div class="flex-inline px-4 w-4/8">
+          <div class="flex-inline px-4 w-full">
             <table class="table">
               <thead>
                 <tr>
