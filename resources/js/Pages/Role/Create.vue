@@ -10,7 +10,7 @@ export default {
   },
   layout: Layout,
   props: {
-    users: Array,
+    permissions: Object,
   },
 }
 </script>
@@ -21,7 +21,7 @@ export default {
     <div class="p-6 justify-center">
       <form>
         <div class="flex">
-          <div class="flex-inline w-4/8">
+          <div class="w-4/8">
             <InputLabel class="font-semibold text-md">
               Role Pengguna
             </InputLabel><br>
@@ -38,31 +38,36 @@ export default {
             </select>
           </div>
 
-          <div class="flex-inline px-4 w-full">
-            <table class="table">
+          <div class="px-4">
+            <table class="table w-full">
               <thead>
                 <tr>
-                  <th class="w-4/8 text-left">
-                    Menu/Form
+                  <th class="text-center">
+                    Menu / Form
                   </th>
-                  <th class="w-4/8 text-left">
+                  <th class="text-center w-4/8">
                     Permission
                   </th>
                 </tr>
               </thead>
+
               <tbody class="border rounded-lg">
-                <td>
-                  <InputLabel class="font-semibold text-md">
-                    User
-                  </InputLabel>
-                </td>
-                <td>
-                  <TextInput
-                    type="checkbox"
-                    class="mt-1 py-2 px-2"
-                  />
-                  <span class="px-3">Create user</span>
-                </td>
+                <tr v-for="(permission, index) in permissions" :key="index" class="w-full">
+                  <td>
+                    {{ index }}
+                  </td>
+                  <td>
+                    <template v-for="menu in permission" :key="menu.id">
+                      <InputLabel class="items-center font-semibold px-3 text-md">
+                        <TextInput
+                          type="checkbox"
+                          class="py-2 px-2"
+                        />
+                        {{ menu.name }}
+                      </InputLabel>
+                    </template>
+                  </td>
+                </tr>
               </tbody>
             </table>
           </div>
@@ -74,7 +79,3 @@ export default {
     </div>
   </div>
 </template>
-
-<style>
-
-</style>

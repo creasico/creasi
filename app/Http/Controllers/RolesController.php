@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Spatie\Permission\Models\Permission;
 
 class RolesController extends Controller
 {
@@ -15,9 +15,6 @@ class RolesController extends Controller
      */
     public function index()
     {
-        $users = User::all();
-
-        return Inertia::render('Role/Create', ['users' => $users]);
     }
 
     /**
@@ -27,6 +24,9 @@ class RolesController extends Controller
      */
     public function create()
     {
+        $permissions = Permission::select(['id', 'module_name', 'name'])->get()->groupBy('module_name');
+
+        return Inertia::render('Role/Create', ['permissions' => $permissions]);
     }
 
     /**
