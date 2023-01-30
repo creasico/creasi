@@ -38,14 +38,14 @@ export default {
             </select>
           </div>
 
-          <div class="px-4">
+          <div class="px-4 w-full">
             <table class="table w-full">
               <thead>
                 <tr>
-                  <th class="text-center">
+                  <th class="text-left">
                     Menu / Form
                   </th>
-                  <th class="text-center w-4/8">
+                  <th class="text-left">
                     Permission
                   </th>
                 </tr>
@@ -58,7 +58,7 @@ export default {
                   </td>
                   <td>
                     <template v-for="menu in permission" :key="menu.id">
-                      <InputLabel class="items-center font-semibold px-3 text-md">
+                      <InputLabel class="flex flex-wrap items-center font-semibold px-3 text-md">
                         <TextInput
                           type="checkbox"
                           class="py-2 px-2"
