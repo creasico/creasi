@@ -41,7 +41,7 @@ class RolesController extends Controller
      */
     public function store(Request $request)
     {
-        $role = Role::create([
+        $role = Role::firstOrCreate([
             'name' => $request->role,
             'guard_name' => 'web',
         ]);

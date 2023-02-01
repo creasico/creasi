@@ -11,6 +11,7 @@ export default {
   layout: Layout,
   props: {
     errors: Object,
+    roles: Array,
   },
   setup() {
     const form = useForm({
@@ -18,6 +19,7 @@ export default {
       email: '',
       password: '',
       password_confirmation: '',
+      role: '',
     })
 
     const submit = () => {
@@ -90,6 +92,17 @@ export default {
               class="mt-1 block w-full"
             />
             <InputError class="mt-3" :message="errors.password_confirmation" />
+          </div>
+          <div class="mt-4">
+            <InputLabel for="role" class="font-semibold text-md">
+              Role
+            </InputLabel>
+            <select v-model="form.role" class="shadow border-gray-300 transition ease-in-out duration-150 disabled:bg-gray-100 readonly:bg-gray-50 focus:ring-primary focus:outline-none focus:border-primary focus-visible:ring-primary focus:ring-opacity-20 rounded px-4 py-2 w-full">
+              <option v-for="role in roles" :key="role.id">
+                {{ role.name }}
+              </option>
+            </select>
+            <InputError class="mt-3" :message="errors.role" />
           </div>
           <div class="flex items-center justify-between mt-4">
             <PrimaryButton class="inline-flex items-center font-semibold transition ease-in-out duration-150 border border-transparent rounded hover:shadow focus:ring-opacity-40 focus:outline-opacity-60 disabled:opacity-25 select-none px-4 py-2 text-white bg-emerald-700 hover:bg-emerald-600 focus:bg-emerald-600 active:bg-emerald-800 focus:outline-emerald-500 hover:border-emerald-700 focus:border-emerald-700 focus:border-emerald-900">

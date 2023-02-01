@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
+use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
@@ -31,16 +32,20 @@ class UserController extends Controller
      */
     public function create()
     {
-        return Inertia::render('Users/Create');
+        $roles = Role::all();
+
+        return Inertia::render('Users/Create', ['roles' => $roles]);
     }
 
     public function store(StoreRequest $request)
     {
-        User::create([
+        $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => bcrypt($request->password),
         ]);
+
+        $user->assignRole($request->role);
 
         return Redirect::route('users.home');
     }

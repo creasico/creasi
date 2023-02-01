@@ -14,10 +14,10 @@ class PermissionSeeder extends Seeder
      * @return void
      */
     private $roleUsers = [
-        'owner' => [
+        'Owner' => [
             'permission' => [],
         ],
-        'manager' => [
+        'Manager' => [
             'permission' => [
                 'View users',
                 'Create user',
@@ -27,7 +27,7 @@ class PermissionSeeder extends Seeder
                 'View role and permission',
             ],
         ],
-        'memnber' => [
+        'Member' => [
             'permission' => [
                 'View users',
             ],
@@ -38,9 +38,7 @@ class PermissionSeeder extends Seeder
     public function run()
     {
         foreach ($this->roleUsers as $name => $attr) {
-            $role = $this->createRoleWithPermissions($name, $attr['permission']);
-
-            return $role;
+            $this->createRoleWithPermissions($name, $attr['permission']);
         }
     }
 
