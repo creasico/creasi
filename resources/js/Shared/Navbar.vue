@@ -37,7 +37,7 @@ export default {
         <Link
           class="inline-flex text-gray-600 text-sm leading-7 items-center font-bold py-2 px-4
                             leading-5 focus:outline-none transition duration-150 ease-in-out"
-          :class="{ 'text-primary bg-emerald-50 border-emerald-600 focus:border-emerald-700 border-r-3': $page.url === '/roles/create' }" href="/roles/create"
+          :class="{ 'text-primary bg-emerald-50 border-emerald-600 focus:border-emerald-700 border-r-3': $page.url === '/roles' }" href="/roles"
         >
           Role & Permission
         </Link>

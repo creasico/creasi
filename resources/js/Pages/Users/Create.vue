@@ -34,8 +34,8 @@ export default {
 <template>
   <Head title="Creasi Internal - Create Pengguna " />
   <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg sm:border border-gray-200">
-    <div class="p-6 justify-center">
-      <div class="flex flex-col">
+    <div class="p-6 flex justify-center">
+      <div class="flex flex-col w-4/8">
         <form class="flex flex-col gap-4" @submit.prevent="submit">
           <div>
             <InputLabel for="name" class="font-semibold text-md">

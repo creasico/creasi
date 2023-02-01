@@ -16,6 +16,9 @@ class RolesController extends Controller
      */
     public function index()
     {
+        $roles = Role::all();
+
+        return Inertia::render('Role/index', ['roles' => $roles]);
     }
 
     /**
@@ -59,7 +62,12 @@ class RolesController extends Controller
      */
     public function show($id)
     {
-        //
+        $role = Role::findOrFail($id);
+        $permissions = Permission::select(['id', 'module_name', 'name'])
+            ->get()->groupBy('module_name');
+
+        return Inertia::render('Role/Show', ['role' => $role,
+            'permissions' => $permissions]);
     }
 
     /**
@@ -70,7 +78,10 @@ class RolesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $role = Role::findOrFail($id);
+        $permissions = Permission::select(['id', 'module_name', 'name'])->get()->groupBy('module_name');
+
+        return Inertia::render('Role/Edit', compact('role', 'permissions'));
     }
 
     /**
