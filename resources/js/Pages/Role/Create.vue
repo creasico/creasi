@@ -14,8 +14,8 @@ export default {
   },
   setup() {
     const form = useForm({
-      selected: '',
-      checked: [],
+      role: '',
+      permission: [],
     })
 
     const handleSubmit = () => {
@@ -37,7 +37,7 @@ export default {
             <InputLabel class="font-semibold text-md">
               Role Pengguna
             </InputLabel>
-            <select v-model="form.selected" class="bg-white border border-gray-400 py-2 px-2 rounded-lg focus:outline-none w-full">
+            <select v-model="form.role" class="bg-white border border-gray-400 py-2 px-2 rounded-lg focus:outline-none w-full">
               <option v-for="(role, index) in roles" :key="index" :value="role">
                 {{ role }}
               </option>
@@ -64,7 +64,7 @@ export default {
                   </td>
                   <td>
                     <InputLabel v-for="menu in permission" :key="menu.id" class="flex flex-wrap items-center font-semibold px-3 text-md">
-                      <input v-model="form.checked" type="checkbox" :value="menu.name" class="shadow border-gray-300 transition ease-in-out duration-150 disabled:bg-gray-100 readonly:bg-gray-50 focus:ring-primary focus:outline-none focus:border-primary focus-visible:ring-primary focus:ring-opacity-20 rounded py-2">
+                      <input v-model="form.permission" type="checkbox" :value="menu.name" class="shadow border-gray-300 transition ease-in-out duration-150 disabled:bg-gray-100 readonly:bg-gray-50 focus:ring-primary focus:outline-none focus:border-primary focus-visible:ring-primary focus:ring-opacity-20 rounded py-2">
                       {{ menu.name }}
                     </InputLabel>
                   </td>

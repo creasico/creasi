@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 
 class RolesController extends Controller
 {
@@ -40,6 +41,14 @@ class RolesController extends Controller
      */
     public function store(Request $request)
     {
+        $role = Role::create([
+            'name' => $request->role,
+            'guard_name' => 'web',
+        ]);
+
+        if (count($request->permission) > 0) {
+            $role->syncPermissions($request->permission);
+        }
     }
 
     /**
