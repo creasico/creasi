@@ -30,7 +30,9 @@ class RolesController extends Controller
     public function create()
     {
         $permissions = Permission::select(['id', 'module_name', 'name'])->get()->groupBy('module_name');
-        $roles = Role::all();
+        $roles = collect([
+            'Owner', 'Manager', 'Member',
+        ]);
 
         return Inertia::render('Role/Create', ['permissions' => $permissions, 'roles' => $roles]);
     }
@@ -43,7 +45,7 @@ class RolesController extends Controller
      */
     public function store(Request $request)
     {
-        $role = Role::firstOrCreate([
+        $role = Role::updateOrCreate([
             'name' => $request->role,
             'guard_name' => 'web',
         ]);

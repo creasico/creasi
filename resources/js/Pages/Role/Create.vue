@@ -39,7 +39,7 @@ export default {
             </InputLabel>
             <select v-model="form.role" class="bg-white border border-gray-400 py-2 px-2 rounded-lg focus:outline-none w-full">
               <option v-for="(role, index) in roles" :key="index" :value="role">
-                {{ role.name }}
+                {{ role }}
               </option>
             </select>
           </div>
