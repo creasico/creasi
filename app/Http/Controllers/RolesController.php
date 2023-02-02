@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
@@ -96,6 +97,10 @@ class RolesController extends Controller
             'name' => $request->role,
         ]);
         $role->syncPermissions($request->permission);
+
+        if ($role) {
+            return Redirect::route('roles.index');
+        }
     }
 
     /**
@@ -106,6 +111,12 @@ class RolesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $role = Role::findOrFail($id);
+        $role->revokePermissionTo(request()->permission);
+        $role->delete();
+
+        if ($role) {
+            return Redirect::route('roles.index');
+        }
     }
 }

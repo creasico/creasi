@@ -19,7 +19,7 @@ export default {
       this.currentId = id
     },
     handleDelete(id) {
-      router.delete(`/role/${id}/delete`)
+      router.delete(`/roles/${id}`)
     },
   },
 }
