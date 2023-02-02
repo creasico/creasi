@@ -29,9 +29,7 @@ class RolesController extends Controller
     public function create()
     {
         $permissions = Permission::select(['id', 'module_name', 'name'])->get()->groupBy('module_name');
-        $roles = collect([
-            'Owner', 'Manager', 'Member',
-        ]);
+        $roles = Role::all();
 
         return Inertia::render('Role/Create', ['permissions' => $permissions, 'roles' => $roles]);
     }
@@ -93,7 +91,11 @@ class RolesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $role = Role::findOrFail($id);
+        $role->update([
+            'name' => $request->role,
+        ]);
+        $role->syncPermissions($request->permission);
     }
 
     /**
