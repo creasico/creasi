@@ -2,6 +2,7 @@ import { createSSRApp, h } from 'vue'
 import { createInertiaApp } from '@inertiajs/vue3'
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers'
 import { createI18n } from 'vue-i18n'
+import Swal from 'sweetalert2'
 import localeMessages from './vue-i18n-locales.generated'
 
 createInertiaApp({
@@ -17,5 +18,16 @@ createInertiaApp({
       .use(plugin)
       .use(i18n)
       .mount(el)
+  },
+})
+
+window.Swal = Swal
+window.Toast = Swal.mixin({
+  toast: true,
+  position: 'top-end',
+  timerProgressBar: true,
+  didOpen: (toast) => {
+    toast.addEventListener('mouseenter', Swal.stopTimer)
+    toast.addEventListener('mouseleave', Swal.resumeTimer)
   },
 })

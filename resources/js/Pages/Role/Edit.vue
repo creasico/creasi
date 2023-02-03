@@ -12,6 +12,7 @@ export default {
   props: {
     role: Object,
     permissions: Object,
+    rolePermissions: Object,
   },
   setup(props) {
     const form = reactive({

@@ -1,4 +1,5 @@
 <script>
+import Swal from 'sweetalert2'
 import { Head, router } from '@inertiajs/vue3'
 import { reactive } from 'vue'
 import Layout from '../../Shared/Layout.vue'
@@ -25,6 +26,11 @@ export default {
 
     const submit = () => {
       router.post('/users/create', form)
+      Swal.fire({
+        title: 'Data berhasil ditambah',
+        icon: 'success',
+        showConfirmButton: true,
+      })
     }
 
     return { form, submit }

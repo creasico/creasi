@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 use Spatie\Permission\Models\Permission;
@@ -83,8 +84,11 @@ class RolesController extends Controller
     {
         $role = Role::findOrFail($id);
         $permissions = Permission::select(['id', 'module_name', 'name'])->get()->groupBy('module_name');
-
-        return Inertia::render('Role/Edit', compact('role', 'permissions'));
+        $rolePermissions = DB::table('role_has_permissions')->where('role_has_permissions.role_id', $id)
+            ->pluck('role_has_permissions.permission_id', 'role_has_permissions.permission_id')
+            ->all();
+        // dd($rolePermissions);
+        return Inertia::render('Role/Edit', compact('role', 'permissions', 'rolePermissions'));
     }
 
     /**
