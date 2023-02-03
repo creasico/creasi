@@ -83,4 +83,4 @@ EXPOSE 80
 RUN ["chmod", "+x", "post_deploy.sh"]
 
 CMD [ "sh", "./post_deploy.sh" ]
-# CMD php artisan serve --host=127.0.0.1 --port=9000
+CMD php artisan serve --host=0.0.0.0 --port=9000
