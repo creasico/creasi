@@ -52,7 +52,7 @@ RUN npm install
 
 RUN npm rebuild node-sass
 
-RUN npm run prod
+RUN npm run build
 
 # setup composer and laravel
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
@@ -76,7 +76,7 @@ RUN php artisan view:clear
 RUN php artisan view:cache
 
 # remove this line if you do not want to run migrations on each build
-RUN php artisan migrate --force
+# RUN php artisan migrate --force
 
 EXPOSE 80
 
