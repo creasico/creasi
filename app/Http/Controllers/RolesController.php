@@ -53,6 +53,8 @@ class RolesController extends Controller
         if (count($request->permission) > 0) {
             $role->syncPermissions($request->permission);
         }
+
+        return Redirect::route('roles.index');
     }
 
     /**

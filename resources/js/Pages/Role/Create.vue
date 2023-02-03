@@ -9,7 +9,7 @@ export default {
   },
   layout: Layout,
   props: {
-    permissions: Array,
+    permissions: Object,
     roles: Array,
   },
   setup() {
