@@ -1,5 +1,5 @@
 <script>
-import { Head, router, useForm } from '@inertiajs/vue3'
+import { Head, router } from '@inertiajs/vue3'
 import { reactive } from 'vue'
 import InputLabel from '../../components/InputLabel.vue'
 import PrimaryButton from '../../components/PrimaryButton.vue'
@@ -15,18 +15,12 @@ export default {
   },
   setup(props) {
     const form = reactive({
-      role: '',
+      role: props.role.name,
       permission: [],
     })
 
     const handleSubmit = () => {
-      const role = form.role
-      const permission = form.permission
-
-      router.put(`/roles/${props.role.id}`, {
-        role,
-        permission,
-      })
+      router.put(`/roles/${props.role.id}`, form)
     }
     return { form, handleSubmit }
   },
@@ -44,7 +38,7 @@ export default {
               Role Pengguna
             </InputLabel>
             <select v-model="form.role" class="bg-white border border-gray-400 py-2 px-2 rounded-lg focus:outline-none w-full">
-              <option>
+              <option :value="role.name">
                 {{ role.name }}
               </option>
             </select>
