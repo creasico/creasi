@@ -11,7 +11,8 @@ export default {
   layout: Layout,
   props: {
     user: Object,
-    role: Object,
+    role: String,
+    roles: Array,
     errors: Object,
   },
   setup(props) {
@@ -77,7 +78,11 @@ export default {
             </InputLabel>
 
             <select class="shadow border-gray-300 transition ease-in-out duration-150 disabled:bg-gray-100 readonly:bg-gray-50 focus:ring-primary focus:outline-none focus:border-primary focus-visible:ring-primary focus:ring-opacity-20 rounded-md px-4 py-2 w-full">
-              <option>{{ role[0] }}</option>
+              <template v-for="role in roles" :key="role.id">
+                <option v-if="role.name === role.name" :value="role.name">
+                  {{ role.name }}
+                </option>
+              </template>
             </select>
           </div>
 
