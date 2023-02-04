@@ -30,7 +30,7 @@ export default {
           Swal.fire({
             position: 'top-end',
             icon: 'success',
-            title: 'Data berhasil ditambah',
+            title: '$t(\'auth.actions.forgot\')',
             showConfirmButton: false,
             timer: 1500,
           })

@@ -58,8 +58,8 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        $role = $user->getRoleNames();
-
+        $role = $user->getRoleNames()->toArray();
+        // dd($role[0])
         return Inertia::render('Users/Edit', [
             'user' => $user,
             'role' => $role,

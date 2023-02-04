@@ -19,7 +19,23 @@ export default {
       this.currentId = id
     },
     handleDelete(id) {
-      router.delete(`/roles/${id}`)
+      Swal.fire({
+        title: 'Yakin akan dihapus?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Ya, hapus',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire(
+            'Deleted!',
+            'Data berhasil dihapus.',
+            'success',
+          )
+          router.delete(`/roles/${id}`)
+        }
+      })
     },
   },
 }

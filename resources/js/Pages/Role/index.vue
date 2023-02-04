@@ -63,6 +63,11 @@ export default {
             </div>
           </td>
         </tr>
+        <tr v-if="roles.length === 0">
+          <td colspan="3" class="text-center">
+            {{ $t('users.table.result') }}
+          </td>
+        </tr>
       </tbody>
     </table>
   </div>
