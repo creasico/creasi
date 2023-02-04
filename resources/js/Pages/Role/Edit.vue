@@ -40,16 +40,9 @@ export default {
               Role Pengguna
             </InputLabel>
             <select v-model="form.role" class="bg-white border border-gray-400 py-2 px-2 rounded-lg focus:outline-none w-full">
-              <!-- <template v-for="role in roles" :key="role.id">
-                    <option :value="role.name" v-if="role.name === role.name">
-                        {{role.name}}
-                    </option>
-                </template> -->
-              <template v-for="role in roles" :key="role.id">
-                <option v-if="role.name === role.name" :value="role.name">
-                  {{ role.name }}
-                </option>
-              </template>
+              <option v-for="value in roles" :key="value.id" :selected="value.name === role.name ? true : false">
+                {{ value.name }}
+              </option>
             </select>
           </div>
 

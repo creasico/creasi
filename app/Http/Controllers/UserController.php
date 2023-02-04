@@ -58,7 +58,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        $role = $user->getRoleNames()[0];
+        $role = $user->getRoleNames();
         $roles = Role::all();
 
         return Inertia::render('Users/Edit', [

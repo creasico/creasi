@@ -1,5 +1,6 @@
 <script>
 import { Head, router, useForm } from '@inertiajs/vue3'
+import { reactive } from 'vue'
 import Layout from '../../Shared/Layout.vue'
 import PrimaryButton from '../../components/PrimaryButton.vue'
 import InputLabel from '../../components/InputLabel.vue'
@@ -11,12 +12,16 @@ export default {
   layout: Layout,
   props: {
     user: Object,
-    role: String,
+    role: Array,
     roles: Array,
     errors: Object,
   },
   setup(props) {
-    const form = useForm(props.user)
+    const form = reactive({
+      name: props.user.name,
+      email: props.user.email,
+      role: props.role.name,
+    })
 
     const handleSubmit = () => {
       router.put(`/users/${props.user.id}/edit`, form, {
@@ -78,11 +83,9 @@ export default {
             </InputLabel>
 
             <select class="shadow border-gray-300 transition ease-in-out duration-150 disabled:bg-gray-100 readonly:bg-gray-50 focus:ring-primary focus:outline-none focus:border-primary focus-visible:ring-primary focus:ring-opacity-20 rounded-md px-4 py-2 w-full">
-              <template v-for="role in roles" :key="role.id">
-                <option v-if="role.name === role.name" :value="role.name">
-                  {{ role.name }}
-                </option>
-              </template>
+              <option v-for="value in roles" :key="value.id" :selected="value.name === role[0] ? true : false">
+                {{ value.name }}
+              </option>
             </select>
           </div>
 
