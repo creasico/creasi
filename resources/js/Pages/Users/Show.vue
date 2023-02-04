@@ -1,5 +1,6 @@
 <script>
 import { Head, Link, router } from '@inertiajs/vue3'
+import Swal from 'sweetalert2'
 import Layout from '../../Shared/Layout.vue'
 export default {
   components: { Head, Link },
@@ -19,7 +20,23 @@ export default {
       this.currentId = id
     },
     handleDelete(id) {
-      router.delete(`/users/${id}/delete`)
+      Swal.fire({
+        title: 'Yakin akan dihapus?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Ya, hapus',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire(
+            'Deleted!',
+            'Data berhasil dihapus.',
+            'success',
+          )
+          router.delete(`/users/${id}/delete`)
+        }
+      })
     },
   },
 }

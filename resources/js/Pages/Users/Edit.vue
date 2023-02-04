@@ -4,21 +4,30 @@ import Layout from '../../Shared/Layout.vue'
 import PrimaryButton from '../../components/PrimaryButton.vue'
 import InputLabel from '../../components/InputLabel.vue'
 import TextInput from '../../components/TextInput.vue'
+import InputError from '../../components/InputError.vue'
 
 export default {
-  components: { InputLabel, TextInput, Head, PrimaryButton },
+  components: { InputLabel, TextInput, Head, PrimaryButton, InputError },
   layout: Layout,
   props: {
     user: Object,
     role: Object,
+    errors: Object,
   },
   setup(props) {
     const form = useForm(props.user)
 
     const handleSubmit = () => {
-      router.put(`/users/${props.user.id}/edit`, {
-        name: form.name,
-        email: form.email,
+      router.put(`/users/${props.user.id}/edit`, form, {
+        onSuccess() {
+          Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Data berhasil diupdate',
+            showConfirmButton: false,
+            timer: 1500,
+          })
+        },
       })
     }
     return { form, handleSubmit }
@@ -43,9 +52,10 @@ export default {
               v-model="form.name"
               type="text"
               class="mt-1 block w-full rounded-md"
-              required
               autofocus
             />
+
+            <InputError class="mt-3" :message="errors.name" />
           </div>
           <div class="mt-4">
             <InputLabel for="email" class="font-semibold text-md">
@@ -58,6 +68,8 @@ export default {
               type="email"
               class="mt-1 block w-full rounded-md"
             />
+
+            <InputError class="mt-3" :message="errors.email" />
           </div>
           <div class="mt-4">
             <InputLabel for="role" class="font-semibold text-md">

@@ -25,11 +25,17 @@ export default {
     })
 
     const submit = () => {
-      router.post('/users/create', form)
-      Swal.fire({
-        title: 'Data berhasil ditambah',
-        icon: 'success',
-        showConfirmButton: true,
+      router.post('/users/create', form, {
+        onSuccess() {
+          Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Data berhasil ditambah',
+            showConfirmButton: false,
+            timer: 1500,
+          })
+        },
+        // onError() {}
       })
     }
 
@@ -41,8 +47,8 @@ export default {
 <template>
   <Head title="Creasi Internal - Create Pengguna " />
   <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg sm:border border-gray-200">
-    <div class="p-6 flex justify-center">
-      <div class="flex flex-col w-4/8">
+    <div class="p-6 justify-center">
+      <div class="flex flex-col">
         <form class="flex flex-col gap-4" @submit.prevent="submit">
           <div>
             <InputLabel for="name" class="font-semibold text-md">

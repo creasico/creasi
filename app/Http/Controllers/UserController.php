@@ -47,7 +47,9 @@ class UserController extends Controller
 
         $user->assignRole($request->role);
 
-        return Redirect::route('users.home');
+        if ($user) {
+            return Redirect::route('users.home');
+        }
     }
 
     /**
