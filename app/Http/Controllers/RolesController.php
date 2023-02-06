@@ -82,14 +82,15 @@ class RolesController extends Controller
      */
     public function edit($id)
     {
-        $role = Role::findOrFail($id);
+        $role = Role::with('permissions')->findOrFail($id);
+        $selectedPermissions = $role->permissions->pluck('name')->toArray() ?? [];
         $roles = Role::all();
         $permissions = Permission::select(['id', 'module_name', 'name'])->get()->groupBy('module_name');
-        $rolePermissions = DB::table('role_has_permissions')->where('role_has_permissions.role_id', $id)
-            ->pluck('role_has_permissions.permission_id', 'role_has_permissions.permission_id')
-            ->all();
+        // $rolePermissions = DB::table('role_has_permissions')->where('role_has_permissions.role_id', $id)
+        //     ->pluck('role_has_permissions.permission_id', 'role_has_permissions.permission_id')
+        //     ->all();
 
-        return Inertia::render('Role/Edit', compact('role', 'permissions', 'rolePermissions', 'roles'));
+        return Inertia::render('Role/Edit', compact('role', 'permissions', 'roles', 'selectedPermissions'));
     }
 
     /**

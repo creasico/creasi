@@ -14,11 +14,12 @@ export default {
     roles: Array,
     permissions: Object,
     rolePermissions: Object,
+    selectedPermissions: Array,
   },
   setup(props) {
     const form = reactive({
       role: props.role.name,
-      permissions: props.permissions.name,
+      permissions: props.selectedPermissions,
     })
 
     const handleSubmit = () => {
@@ -58,7 +59,6 @@ export default {
                   </th>
                 </tr>
               </thead>
-
               <tbody class="border rounded-lg">
                 <tr v-for="(permission, index) in permissions" :key="index" class="w-full">
                   <td>
@@ -67,7 +67,8 @@ export default {
                   <td>
                     <InputLabel v-for="menu in permission" :key="menu.id" class="flex flex-wrap items-center font-semibold px-3 text-md">
                       <input
-                        v-model="form.permissions" type="checkbox" :value="menu.id"
+                        type="checkbox" :checked="form.permissions === menu.name ? true : false"
+                        :value="menu.name"
                         class="shadow border-gray-300 transition ease-in-out duration-150 disabled:bg-gray-100 readonly:bg-gray-50 focus:ring-primary focus:outline-none focus:border-primary focus-visible:ring-primary focus:ring-opacity-20 rounded py-2"
                       >
                       {{ menu.name }}
