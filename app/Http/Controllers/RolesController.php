@@ -105,7 +105,7 @@ class RolesController extends Controller
         $role->update([
             'name' => $request->role,
         ]);
-        $role->syncPermissions($request->permission);
+        $role->syncPermissions($request->permissions);
 
         if ($role) {
             return Redirect::route('roles.index');
