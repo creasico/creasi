@@ -20,7 +20,17 @@ export default {
     })
 
     const handleSubmit = () => {
-      router.post('/roles', form)
+      router.post('/roles', form, {
+        onSuccess() {
+          Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Data berhasil ditamnbah',
+            showConfirmButton: false,
+            timer: 1500,
+          })
+        },
+      })
     }
 
     return { form, handleSubmit }
