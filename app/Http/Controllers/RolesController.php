@@ -101,9 +101,11 @@ class RolesController extends Controller
         $role = Role::findOrFail($id);
         $role->update([
             'name' => $request->role,
+            'guard_name' => 'web',
         ]);
         $role->syncPermissions($request->permissions);
 
+        // dd($role);
         if ($role) {
             return Redirect::route('roles.index');
         }
