@@ -18,7 +18,7 @@ export default {
   setup(props) {
     const form = reactive({
       role: props.role.name,
-      permissions: props.selectedPermissions ?? [],
+      permissions: props.selectedPermissions,
     })
 
     const handleSubmit = () => {
