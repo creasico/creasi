@@ -13,8 +13,7 @@ export default {
     role: Object,
     roles: Array,
     permissions: Object,
-    rolePermissions: Object,
-    selectedPermissions: Array,
+    selectedPermissions: Object,
   },
   setup(props) {
     const form = reactive({
@@ -67,8 +66,8 @@ export default {
                   <td>
                     <InputLabel v-for="menu in permission" :key="menu.id" class="flex flex-wrap items-center font-semibold px-3 text-md">
                       <input
-                        type="checkbox" :checked="form.permissions === menu.name ? true : false"
-                        :value="menu.name"
+                        type="checkbox"
+                        :checked="form.permissions.includes(menu.name) ? true : false"
                         class="shadow border-gray-300 transition ease-in-out duration-150 disabled:bg-gray-100 readonly:bg-gray-50 focus:ring-primary focus:outline-none focus:border-primary focus-visible:ring-primary focus:ring-opacity-20 rounded py-2"
                       >
                       {{ menu.name }}
