@@ -30,9 +30,3 @@ RUN composer install --no-dev
 EXPOSE 8080
 
 CMD ["php", "artisan", "serve", "--host=0.0.0.0", "--port=8080"]
-
-FROM node:18
-
-RUN npm install
-
-RUN npm run build
