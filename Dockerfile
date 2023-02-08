@@ -12,7 +12,8 @@ RUN apt-get update && apt-get install -y \
     wget
 
 ENV COMPOSER_ALLOW_SUPERUSER=1
-# ENV PORT=80
+ENV PORT=8080
+ENV HOST=0.0.0.0
 
 # RUN apk add --no-cache nginx wget
 
@@ -26,6 +27,6 @@ COPY . /app
 
 RUN composer install --no-dev
 
-# EXPOSE 80
+EXPOSE 8080
 
 CMD ["php", "artisan", "serve", "--host=0.0.0.0", "--port=8080"]
