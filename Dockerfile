@@ -12,6 +12,7 @@ RUN apt-get update && apt-get install -y \
     wget
 
 ENV COMPOSER_ALLOW_SUPERUSER=1
+ENV PORT=80
 
 # RUN apk add --no-cache nginx wget
 
