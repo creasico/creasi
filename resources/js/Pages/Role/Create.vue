@@ -1,6 +1,7 @@
 <script>
 import { Head, router } from '@inertiajs/vue3'
 import { reactive } from 'vue'
+import { useI18n } from 'vue-i18n'
 import InputLabel from '../../components/InputLabel.vue'
 import PrimaryButton from '../../components/PrimaryButton.vue'
 import Layout from '../../Shared/Layout.vue'
@@ -19,13 +20,17 @@ export default {
       permission: [],
     })
 
+    const { t } = useI18n({
+      legacy: false,
+    })
+
     const handleSubmit = () => {
       router.post('/roles', form, {
         onSuccess() {
           Swal.fire({
             position: 'top-end',
             icon: 'success',
-            title: 'Data berhasil ditamnbah',
+            title: t('role_permission.actions.submit'),
             showConfirmButton: false,
             timer: 1500,
           })
@@ -33,7 +38,7 @@ export default {
       })
     }
 
-    return { form, handleSubmit }
+    return { form, handleSubmit, t }
   },
 }
 </script>

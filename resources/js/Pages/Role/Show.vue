@@ -1,5 +1,7 @@
 <script>
 import { Head, Link, router } from '@inertiajs/vue3'
+import { ref } from 'vue'
+import { useI18n } from 'vue-i18n'
 import Layout from '../../Shared/Layout.vue'
 export default {
   components: { Head, Link },
@@ -7,36 +9,40 @@ export default {
   props: {
     role: Object,
   },
-  data() {
-    return {
-      currentId: '',
-      isVisible: false,
+  setup() {
+    const { t } = useI18n({
+      legacy: false,
+    })
+
+    const currentId = ref('')
+    const isVisible = ref(false)
+
+    const toggleVisible = (id) => {
+      isVisible.value = !isVisible.value
+      currentId.value = id
     }
-  },
-  methods: {
-    toggleVisible(id) {
-      this.isVisible = !this.isVisible
-      this.currentId = id
-    },
-    handleDelete(id) {
+
+    const handleDelete = (id) => {
       Swal.fire({
-        title: 'Yakin akan dihapus?',
+        title: t('role_permission.actions.delete.question'),
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'Ya, hapus',
+        confirmButtonText: t('role_permission.actions.delete.answer'),
       }).then((result) => {
         if (result.isConfirmed) {
           Swal.fire(
-            'Deleted!',
-            'Data berhasil dihapus.',
+            t('role_permission.actions.delete.info'),
+            t('role_permission.actions.delete.message'),
             'success',
           )
           router.delete(`/roles/${id}`)
         }
       })
-    },
+    }
+
+    return { currentId, isVisible, toggleVisible, handleDelete, t }
   },
 }
 </script>

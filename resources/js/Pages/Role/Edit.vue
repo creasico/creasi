@@ -1,6 +1,7 @@
 <script>
 import { Head, router } from '@inertiajs/vue3'
 import { reactive } from 'vue'
+import { useI18n } from 'vue-i18n'
 import InputLabel from '../../components/InputLabel.vue'
 import PrimaryButton from '../../components/PrimaryButton.vue'
 import Layout from '../../Shared/Layout.vue'
@@ -21,20 +22,24 @@ export default {
       permissions: props.selectedPermissions,
     })
 
+    const { t } = useI18n({
+      legacy: false,
+    })
+
     const handleSubmit = () => {
       router.put(`/roles/${props.role.id}`, form, {
         onSuccess() {
           Swal.fire({
             position: 'top-end',
             icon: 'success',
-            title: 'Data berhasil diupdate',
+            title: t('role_permission.actions.update'),
             showConfirmButton: false,
             timer: 1500,
           })
         },
       })
     }
-    return { form, handleSubmit }
+    return { form, handleSubmit, t }
   },
 }
 </script>

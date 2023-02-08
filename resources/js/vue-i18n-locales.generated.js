@@ -82,6 +82,21 @@ export default {
       },
       fields: [],
     },
+    'role_permission': {
+      routes: {
+        index: 'Role and Permission',
+      },
+      actions: {
+        submit: 'Role and Permission has been created',
+        update: 'Role and Permission has been updated',
+        delete: {
+          question: 'Are you sure delete?',
+          answer: 'Yes, delete',
+          info: 'Deleted',
+          message: 'Data has been deleted',
+        },
+      },
+    },
     'validation': {
       accepted: 'The {attribute} must be accepted.',
       accepted_if: 'The {attribute} must be accepted when {other} is {value}.',
@@ -296,6 +311,21 @@ export default {
         },
       },
       fields: [],
+    },
+    'role_permission': {
+      routes: {
+        index: 'Tugas dan Perizinan',
+      },
+      actions: {
+        submit: 'Tugas dan Perizinan berhasil ditambah',
+        update: 'Tugas dan Perizinan berhasil diupdate',
+        delete: {
+          question: 'Yakin akan dihapus?',
+          answer: 'Ya, hapus',
+          info: 'Terhapus',
+          message: 'Data berhasil dihapus',
+        },
+      },
     },
     'validation': {
       accepted: '{Attribute} harus diterima.',

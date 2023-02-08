@@ -39,7 +39,7 @@ export default {
                             leading-5 focus:outline-none transition duration-150 ease-in-out"
           :class="{ 'text-primary bg-emerald-50 border-emerald-600 focus:border-emerald-700 border-r-3': $page.url === '/roles' }" href="/roles"
         >
-          Role & Permission
+          {{ $t('role_permission.routes.index') }}
         </Link>
       </nav>
     </div>
