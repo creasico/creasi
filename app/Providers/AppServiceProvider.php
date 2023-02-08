@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\View\Composers\MenuComposer;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
@@ -36,6 +37,10 @@ class AppServiceProvider extends ServiceProvider
          */
         if (! $this->app->environment('production') && $devMail = env('MAIL_DEVELOPMENT')) {
             Mail::alwaysTo($devMail);
+        }
+
+        if ($this->app->environment('production')) {
+            URL::forceScheme('https');
         }
 
         View::composer(['layouts.app'], MenuComposer::class);

@@ -56,6 +56,19 @@ return [
             'throw' => false,
         ],
 
+        // google cloud storage
+        'gs' => [
+            'driver' => 's3',
+            'key' => env('GS_ACCESS_KEY_ID'),
+            'secret' => env('GS_SECRET_ACCESS_KEY'),
+            'region' => env('GS_DEFAULT_REGION'),
+            'bucket' => env('GS_BUCKET'),
+            'url' => env('GS_URL'),
+            'endpoint' => env('GS_ENDPOINT', 'https://storage.googleapis.com'),
+            'use_path_style_endpoint' => env('GS_USE_PATH_STYLE_ENDPOINT', false),
+            'throw' => false,
+        ],
+
     ],
 
     /*
