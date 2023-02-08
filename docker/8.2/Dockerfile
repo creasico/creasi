@@ -10,6 +10,8 @@ WORKDIR /var/www/html
 
 ENV DEBIAN_FRONTEND noninteractive
 ENV TZ=UTC
+ENV WORKSPACE_PUID=1000
+ENV WORKSPACE_PGID=1000
 
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
