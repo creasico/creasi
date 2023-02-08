@@ -26,10 +26,6 @@ ENV HOST=0.0.0.0
 
 RUN sh -c "wget http://getcomposer.org/composer.phar && chmod a+x composer.phar && mv composer.phar /usr/local/bin/composer"
 
-# setup node js source will be used later to install node js
-RUN curl -sL https://deb.nodesource.com/setup_16.x -o nodesource_setup.sh
-RUN ["sh",  "./nodesource_setup.sh"]
-
 RUN docker-php-ext-install pdo_mysql mbstring zip
 
 WORKDIR /app
