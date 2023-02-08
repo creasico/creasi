@@ -1,19 +1,28 @@
-FROM php:8.1-fpm-alpine
+FROM php:8.2-fpm
 
-RUN apk add --no-cache nginx wget
+RUN apt-get update && apt-get install -y \
+    git \
+    curl \
+    libpng-dev \
+    libonig-dev \
+    libxml2-dev \
+    libzip-dev \
+    zip \
+    unzip \
+    wget
 
-RUN mkdir -p /run/nginx
+ENV COMPOSER_ALLOW_SUPERUSER=1
 
-COPY docker/custom/nginx.conf /etc/nginx/nginx.conf
-
-RUN mkdir -p /app
-COPY . /app
-# COPY ./src /app
+# RUN apk add --no-cache nginx wget
 
 RUN sh -c "wget http://getcomposer.org/composer.phar && chmod a+x composer.phar && mv composer.phar /usr/local/bin/composer"
-RUN cd /app && \
-    /usr/local/bin/composer install --no-dev
 
-RUN chown -R www-data: /app
+RUN docker-php-ext-install pdo_mysql mbstring zip
 
-CMD sh /app/docker/startup.sh
+WORKDIR /app
+
+COPY . /app
+
+RUN composer install --no-dev
+
+CMD ["php", "artisan", "serve", "--host=0.0.0.0", "--port=80"]
