@@ -9,7 +9,12 @@ RUN apt-get update && apt-get install -y \
     libzip-dev \
     zip \
     unzip \
-    wget
+    wget \
+    && curl -sLS https://deb.nodesource.com/setup_$NODE_VERSION.x | bash - \
+    && apt-get install -y nodejs \
+    && npm install -g npm \
+    && apt-get update \
+    && apt-get install -y yarn
 
 ENV COMPOSER_ALLOW_SUPERUSER=1
 ENV PORT=8080
@@ -31,9 +36,9 @@ COPY . /app
 
 RUN composer install --no-dev
 
-RUN npm install
+RUN yarn install
 
-RUN npm run build
+RUN yarn build
 
 EXPOSE 8080
 
