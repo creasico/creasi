@@ -38,9 +38,9 @@ COPY . /app
 
 RUN composer install --no-dev
 
-RUN yarn install
+RUN npm install
 
-RUN yarn build
+RUN npm run build
 
 EXPOSE 8080
 
