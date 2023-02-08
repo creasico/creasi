@@ -22,7 +22,17 @@ export default {
     })
 
     const handleSubmit = () => {
-      router.put(`/roles/${props.role.id}`, form)
+      router.put(`/roles/${props.role.id}`, form, {
+        onSuccess() {
+          Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Data berhasil diupdate',
+            showConfirmButton: false,
+            timer: 1500,
+          })
+        },
+      })
     }
     return { form, handleSubmit }
   },

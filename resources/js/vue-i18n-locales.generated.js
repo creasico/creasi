@@ -70,6 +70,16 @@ export default {
         email: 'Email',
         result: 'Data Not Found',
       },
+      actions: {
+        submit: 'User has been created',
+        update: 'User has been updated',
+        delete: {
+          question: 'Are you sure delete?',
+          answer: 'Yes, delete',
+          info: 'Deleted',
+          message: 'Data has been deleted',
+        },
+      },
       fields: [],
     },
     'validation': {
@@ -274,6 +284,16 @@ export default {
         name: 'Nama',
         email: 'Email',
         result: 'Data Tidak ada',
+      },
+      actions: {
+        submit: 'User berhasil ditambah',
+        update: 'User berhasil diupdate',
+        delete: {
+          question: 'Yakin akan dihapus?',
+          answer: 'Ya, hapus',
+          info: 'Terhapus',
+          message: 'Data berhasil dihapus',
+        },
       },
       fields: [],
     },

@@ -1,6 +1,7 @@
 <script>
 import { Head, router, useForm } from '@inertiajs/vue3'
 import { reactive } from 'vue'
+import { useI18n } from 'vue-i18n'
 import Layout from '../../Shared/Layout.vue'
 import PrimaryButton from '../../components/PrimaryButton.vue'
 import InputLabel from '../../components/InputLabel.vue'
@@ -23,20 +24,24 @@ export default {
       role: props.role.name,
     })
 
+    const { t } = useI18n({
+      legacy: false,
+    })
+
     const handleSubmit = () => {
       router.put(`/users/${props.user.id}/edit`, form, {
         onSuccess() {
           Swal.fire({
             position: 'top-end',
             icon: 'success',
-            title: 'Data berhasil diupdate',
+            title: t('users.actions.update'),
             showConfirmButton: false,
             timer: 1500,
           })
         },
       })
     }
-    return { form, handleSubmit }
+    return { form, handleSubmit, t }
   },
 
 }

@@ -1,12 +1,40 @@
 <script>
 import { Head, Link, router } from '@inertiajs/vue3'
 import Swal from 'sweetalert2'
+import { useI18n } from 'vue-i18n'
 import Layout from '../../Shared/Layout.vue'
+
 export default {
   components: { Head, Link },
   layout: Layout,
   props: {
     user: Object,
+  },
+  setup() {
+    const { t } = useI18n({
+      legacy: false,
+    })
+
+    const handleDelete = (id) => {
+      Swal.fire({
+        title: t('users.actions.delete.question'),
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: t('users.actions.delete.answer'),
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire(
+            t('users.actions.delete.info'),
+            t('users.actions.delete.message'),
+            'success',
+          )
+          router.delete(`/users/${id}/delete`)
+        }
+      })
+    }
+    return { handleDelete, t }
   },
   data() {
     return {
@@ -18,25 +46,6 @@ export default {
     toggleVisible(id) {
       this.isVisible = !this.isVisible
       this.currentId = id
-    },
-    handleDelete(id) {
-      Swal.fire({
-        title: 'Yakin akan dihapus?',
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Ya, hapus',
-      }).then((result) => {
-        if (result.isConfirmed) {
-          Swal.fire(
-            'Deleted!',
-            'Data berhasil dihapus.',
-            'success',
-          )
-          router.delete(`/users/${id}/delete`)
-        }
-      })
     },
   },
 }

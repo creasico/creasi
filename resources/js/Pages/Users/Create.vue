@@ -2,6 +2,7 @@
 import Swal from 'sweetalert2'
 import { Head, router } from '@inertiajs/vue3'
 import { reactive } from 'vue'
+import { useI18n } from 'vue-i18n'
 import Layout from '../../Shared/Layout.vue'
 import PrimaryButton from '../../components/PrimaryButton.vue'
 import InputLabel from '../../components/InputLabel.vue'
@@ -24,13 +25,17 @@ export default {
       role: '',
     })
 
+    const { t } = useI18n({
+      legacy: false,
+    })
+
     const submit = () => {
       router.post('/users/create', form, {
         onSuccess() {
           Swal.fire({
             position: 'top-end',
             icon: 'success',
-            title: 'Data berhasil ditamnbah',
+            title: t('users.actions.submit'),
             showConfirmButton: false,
             timer: 1500,
           })
@@ -39,7 +44,7 @@ export default {
       })
     }
 
-    return { form, submit }
+    return { form, submit, t }
   },
 }
 </script>
