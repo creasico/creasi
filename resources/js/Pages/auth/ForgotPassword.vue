@@ -17,7 +17,7 @@ export default {
     })
 
     const submit = () => {
-      form.post(route('password.email'))
+      form.post('/forgot-password')
     }
 
     return { form, submit }

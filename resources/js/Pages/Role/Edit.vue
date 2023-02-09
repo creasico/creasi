@@ -32,7 +32,7 @@ export default {
           Swal.fire({
             position: 'top-end',
             icon: 'success',
-            title: t('role_permission.actions.update'),
+            title: t('notifications.update'),
             showConfirmButton: false,
             timer: 1500,
           })
@@ -52,7 +52,7 @@ export default {
         <div class="flex">
           <div class="w-4/8">
             <InputLabel class="font-semibold text-md">
-              Role Pengguna
+              {{ $t('role_permission.table.role') }}
             </InputLabel>
             <select v-model="form.role" class="bg-white border border-gray-400 py-2 px-2 rounded-lg focus:outline-none w-full">
               <option v-for="value in roles" :key="value.id" :selected="value.name === role.name ? true : false">
@@ -69,7 +69,7 @@ export default {
                     Menu / Form
                   </th>
                   <th class="text-left">
-                    Permission
+                    {{ $t('role_permission.table.permission') }}
                   </th>
                 </tr>
               </thead>
@@ -96,7 +96,7 @@ export default {
           </div>
         </div>
         <PrimaryButton type="submit" class="flex px-3 py-2 bg-emerald-700 hover:bg-emerald-700 rounded-md mt-3">
-          Update
+          {{ $t('actions.forms.update') }}
         </PrimaryButton>
       </form>
     </div>

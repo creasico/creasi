@@ -30,7 +30,7 @@ export default {
           Swal.fire({
             position: 'top-end',
             icon: 'success',
-            title: t('role_permission.actions.submit'),
+            title: t('notifications.submit'),
             showConfirmButton: false,
             timer: 1500,
           })
@@ -51,11 +51,11 @@ export default {
         <div class="flex">
           <div class="w-4/8">
             <InputLabel class="font-semibold text-md">
-              Role Pengguna
+              {{ $t('role_permission.table.role') }}
             </InputLabel>
             <select v-model="form.role" class="bg-white border border-gray-400 py-2 px-2 rounded-lg focus:outline-none w-full">
               <option disabled value="">
-                -- Pilih Role --
+                -- {{ $t('role_permission.select.option') }} --
               </option>
               <option v-for="(role, index) in roles" :key="index" :value="role">
                 {{ role }}
@@ -68,10 +68,10 @@ export default {
               <thead>
                 <tr>
                   <th class="text-left">
-                    Menu / Form
+                    {{ $t('role_permission.table.menu') }}
                   </th>
                   <th class="text-left">
-                    Permission
+                    {{ $t('role_permission.table.permission') }}
                   </th>
                 </tr>
               </thead>
@@ -93,7 +93,7 @@ export default {
           </div>
         </div>
         <PrimaryButton type="submit" class="flex px-3 py-2 bg-emerald-700 hover:bg-emerald-700 rounded-md mt-3">
-          Save
+          {{ $t('actions.forms.submit') }}
         </PrimaryButton>
       </form>
     </div>

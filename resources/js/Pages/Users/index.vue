@@ -23,7 +23,7 @@ export default {
 <template>
   <Head title="Creasi Internal - Semua Pengguna " />
   <Link href="/users/create" class="inline-flex items-center font-semibold transition ease-in-out duration-150 border border-transparent rounded hover:shadow focus:ring-opacity-40 focus:outline-opacity-60 disabled:opacity-25 select-none px-2 py-2 text-white bg-emerald-700 hover:bg-emerald-600 focus:bg-emerald-600 active:bg-emerald-800 focus:outline-emerald-500 hover:border-emerald-700 focus:border-emerald-700 focus:border-emerald-900">
-    Create User
+    {{ $t('users.button.create') }}
   </Link>
   <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg sm:border border-gray-200 mt-3">
     <table class="table">
@@ -53,7 +53,7 @@ export default {
                 <div @click="toggleVisible">
                   <div v-if="currentId === user.id && isVisible">
                     <Link :href="`/users/${user.id}/show`" class="block px-2 py-5 text-sm leading-5 text-green-600 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out">
-                      Detail
+                      {{ $t('actions.forms.detail') }}
                     </Link>
                   </div>
                 </div>

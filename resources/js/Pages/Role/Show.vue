@@ -24,17 +24,17 @@ export default {
 
     const handleDelete = (id) => {
       Swal.fire({
-        title: t('role_permission.actions.delete.question'),
+        title: t('notifications.delete.question'),
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        confirmButtonText: t('role_permission.actions.delete.answer'),
+        confirmButtonText: t('notifications.delete.answer'),
       }).then((result) => {
         if (result.isConfirmed) {
           Swal.fire(
-            t('role_permission.actions.delete.info'),
-            t('role_permission.actions.delete.message'),
+            t('notifications.delete.info'),
+            t('notifications.delete.message'),
             'success',
           )
           router.delete(`/roles/${id}`)
@@ -57,7 +57,7 @@ export default {
             No
           </th>
           <th class="w-3/8 text-left">
-            Role
+            {{ $t('role_permission.table.role') }}
           </th>
           <th class="action">
             {{ $t('actions.tables.column') }}
@@ -77,10 +77,10 @@ export default {
                 <div @click="toggleVisible">
                   <div v-if="currentId === role.id && isVisible">
                     <Link :href="`/roles/${role.id}/edit`" class="block px-2 py-5 text-sm leading-5 text-green-600 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out">
-                      Edit
+                      {{ $t('actions.forms.edit') }}
                     </Link>
                     <button class="bg-transparent text-green-600 block px-2 py-5 text-sm leading-5 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out" @click="handleDelete(`${role.id}`)">
-                      Delete
+                      {{ $t('actions.forms.delete') }}
                     </button>
                   </div>
                 </div>

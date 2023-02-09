@@ -15,7 +15,7 @@ createInertiaApp({
       messages: localeMessages,
     })
 
-    createSSRApp({ render: () => h(App, props) })
+    return createSSRApp({ render: () => h(App, props) })
       .use(plugin)
       .use(i18n)
       .mount(el)

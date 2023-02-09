@@ -17,17 +17,18 @@ export default {
 
     const handleDelete = (id) => {
       Swal.fire({
-        title: t('users.actions.delete.question'),
+        title: t('notifications.delete.question'),
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        confirmButtonText: t('users.actions.delete.answer'),
+        confirmButtonText: t('notifications.delete.answer'),
+        cancelButtonText: t('actions.forms.cancel'),
       }).then((result) => {
         if (result.isConfirmed) {
           Swal.fire(
-            t('users.actions.delete.info'),
-            t('users.actions.delete.message'),
+            t('notifications.delete.info'),
+            t('notifications.delete.message'),
             'success',
           )
           router.delete(`/users/${id}/delete`)
@@ -81,10 +82,10 @@ export default {
                 <div @click="toggleVisible">
                   <div v-if="currentId === user.id && isVisible">
                     <Link :href="`/users/${user.id}/edit`" class="block px-2 py-5 text-sm leading-5 text-green-600 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out">
-                      Edit
+                      {{ $t('actions.forms.edit') }}
                     </Link>
                     <button class="bg-transparent text-green-600 block px-2 py-5 text-sm leading-5 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out" @click="handleDelete(`${user.id}`)">
-                      Delete
+                      {{ $t('actions.forms.delete') }}
                     </button>
                   </div>
                 </div>

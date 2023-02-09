@@ -8,9 +8,12 @@ export default {
       'no-content': 'Loading',
       'forms': {
         submit: 'Submit',
+        edit: 'Edit',
         save: 'Save',
         update: 'Update',
         cancel: 'Cancel',
+        delete: 'Delete',
+        detail: 'Detail',
       },
     },
     'auth': {
@@ -41,7 +44,6 @@ export default {
         resend: 'Resend Verification Email',
         request: 'Email Password Reset Link',
         logout: 'Log out',
-        account: 'Account',
       },
     },
     'dashboard': {
@@ -49,6 +51,18 @@ export default {
         index: 'Dashboard',
       },
       'welcome-notice': 'Welcome Back {user}',
+      'account': 'Account',
+    },
+    'notifications': {
+      submit: 'Data has been created',
+      update: 'Data has been updated',
+      delete: {
+        question: 'Are you sure delete?',
+        answer: 'Yes, delete',
+        info: 'Deleted',
+        message: 'Data has been deleted',
+      },
+      fields: [],
     },
     'pagination': {
       previous: '&laquo; Previous',
@@ -61,6 +75,24 @@ export default {
       token: 'This password reset token is invalid.',
       user: 'We can\'t find a user with that email address.',
     },
+    'role_permission': {
+      routes: {
+        index: 'Role and Permission',
+      },
+      table: {
+        role: 'Role',
+        menu: 'Form',
+        permission: 'Permission',
+        result: 'Data not found',
+      },
+      button: {
+        create: 'Create Role and Permission',
+      },
+      select: {
+        option: 'Choose Role',
+      },
+      fields: [],
+    },
     'users': {
       routes: {
         index: 'All Users',
@@ -68,34 +100,12 @@ export default {
       table: {
         name: 'Name',
         email: 'Email',
-        result: 'Data Not Found',
+        result: 'Data not found',
       },
-      actions: {
-        submit: 'User has been created',
-        update: 'User has been updated',
-        delete: {
-          question: 'Are you sure delete?',
-          answer: 'Yes, delete',
-          info: 'Deleted',
-          message: 'Data has been deleted',
-        },
+      button: {
+        create: 'Create user',
       },
       fields: [],
-    },
-    'role_permission': {
-      routes: {
-        index: 'Role and Permission',
-      },
-      actions: {
-        submit: 'Role and Permission has been created',
-        update: 'Role and Permission has been updated',
-        delete: {
-          question: 'Are you sure delete?',
-          answer: 'Yes, delete',
-          info: 'Deleted',
-          message: 'Data has been deleted',
-        },
-      },
     },
     'validation': {
       accepted: 'The {attribute} must be accepted.',
@@ -239,8 +249,11 @@ export default {
       'forms': {
         submit: 'Kirim',
         save: 'Simpan',
+        edit: 'Edit',
         update: 'Perbarui',
         cancel: 'Batal',
+        delete: 'Hapus',
+        detail: 'Detil',
       },
     },
     'auth': {
@@ -271,14 +284,25 @@ export default {
         resend: 'Kirim Ulang Email Verifikasi',
         request: 'Tautan Reset Kata Sandi',
         logout: 'Keluar',
-        account: 'Akun',
       },
     },
     'dashboard': {
       'routes': {
-        index: 'Dashboard',
+        index: 'Beranda',
       },
       'welcome-notice': 'Selamat datang {user}',
+      'account': 'Akun',
+    },
+    'notifications': {
+      submit: 'Data berhasil dibuat',
+      update: 'Data berhasil diperbaharui',
+      delete: {
+        question: 'Apakah yakin akan dihapus?',
+        answer: 'Ya, hapus',
+        info: 'Terhapus',
+        message: 'Data berhasil dihapus',
+      },
+      fields: [],
     },
     'pagination': {
       previous: '&laquo; Sebelum',
@@ -291,6 +315,24 @@ export default {
       token: 'Token tersebut tidak valid.',
       user: 'Kami tidak dapat menemukan pengguna dengan email tersebut.',
     },
+    'role_permission': {
+      routes: {
+        index: 'Peran dan Perizinan',
+      },
+      table: {
+        role: 'Peran',
+        menu: 'Menu',
+        permission: 'Perizinan',
+        result: 'Data tidak ada',
+      },
+      button: {
+        create: 'Buat Peran dan Perizinan',
+      },
+      select: {
+        option: 'Pilih Peran',
+      },
+      fields: [],
+    },
     'users': {
       routes: {
         index: 'Semua Pengguna',
@@ -298,34 +340,12 @@ export default {
       table: {
         name: 'Nama',
         email: 'Email',
-        result: 'Data Tidak ada',
+        result: 'Data tidak ada',
       },
-      actions: {
-        submit: 'User berhasil ditambah',
-        update: 'User berhasil diupdate',
-        delete: {
-          question: 'Yakin akan dihapus?',
-          answer: 'Ya, hapus',
-          info: 'Terhapus',
-          message: 'Data berhasil dihapus',
-        },
+      button: {
+        create: 'Buat user',
       },
       fields: [],
-    },
-    'role_permission': {
-      routes: {
-        index: 'Tugas dan Perizinan',
-      },
-      actions: {
-        submit: 'Tugas dan Perizinan berhasil ditambah',
-        update: 'Tugas dan Perizinan berhasil diupdate',
-        delete: {
-          question: 'Yakin akan dihapus?',
-          answer: 'Ya, hapus',
-          info: 'Terhapus',
-          message: 'Data berhasil dihapus',
-        },
-      },
     },
     'validation': {
       accepted: '{Attribute} harus diterima.',

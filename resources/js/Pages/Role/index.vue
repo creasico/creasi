@@ -25,7 +25,7 @@ export default {
 <template>
   <Head title="Creasi Internal - Role & Permission " />
   <Link href="/roles/create" class="inline-flex items-center font-semibold transition ease-in-out duration-150 border border-transparent rounded hover:shadow focus:ring-opacity-40 focus:outline-opacity-60 disabled:opacity-25 select-none px-2 py-2 text-white bg-emerald-700 hover:bg-emerald-600 focus:bg-emerald-600 active:bg-emerald-800 focus:outline-emerald-500 hover:border-emerald-700 focus:border-emerald-700 focus:border-emerald-900">
-    Create Role Permission
+    {{ $t('role_permission.button.create') }}
   </Link>
   <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg sm:border border-gray-200 mt-3">
     <table class="table">
@@ -35,7 +35,7 @@ export default {
             No
           </th>
           <th class="w-4/8 text-left">
-            Role
+            {{ $t('role_permission.table.role') }}
           </th>
           <th class="action">
             {{ $t('actions.tables.column') }}
@@ -55,7 +55,7 @@ export default {
                 <div @click="toggleVisible">
                   <div v-if="currentId === role.id && isVisible">
                     <Link :href="`/roles/${role.id}`" class="block px-2 py-5 text-sm leading-5 text-green-600 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out">
-                      Detail
+                      {{ $t('actions.forms.detail') }}
                     </Link>
                   </div>
                 </div>
@@ -65,7 +65,7 @@ export default {
         </tr>
         <tr v-if="roles.length === 0">
           <td colspan="3" class="text-center">
-            {{ $t('users.table.result') }}
+            {{ $t('role_permission.table.result') }}
           </td>
         </tr>
       </tbody>

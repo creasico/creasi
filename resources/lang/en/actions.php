@@ -9,8 +9,11 @@ return [
 
     'forms' => [
         'submit' => 'Submit',
+        'edit' => 'Edit',
         'save' => 'Save',
         'update' => 'Update',
         'cancel' => 'Cancel',
+        'delete' => 'Delete',
+        'detail' => 'Detail',
     ],
 ];

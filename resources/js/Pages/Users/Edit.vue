@@ -1,5 +1,5 @@
 <script>
-import { Head, router, useForm } from '@inertiajs/vue3'
+import { Head, router } from '@inertiajs/vue3'
 import { reactive } from 'vue'
 import { useI18n } from 'vue-i18n'
 import Layout from '../../Shared/Layout.vue'
@@ -34,7 +34,7 @@ export default {
           Swal.fire({
             position: 'top-end',
             icon: 'success',
-            title: t('users.actions.update'),
+            title: t('notifications.update'),
             showConfirmButton: false,
             timer: 1500,
           })
@@ -84,7 +84,7 @@ export default {
           </div>
           <div class="mt-4">
             <InputLabel for="role" class="font-semibold text-md">
-              Role
+              {{ $t('role_permission.table.role') }}
             </InputLabel>
 
             <select class="shadow border-gray-300 transition ease-in-out duration-150 disabled:bg-gray-100 readonly:bg-gray-50 focus:ring-primary focus:outline-none focus:border-primary focus-visible:ring-primary focus:ring-opacity-20 rounded-md px-4 py-2 w-full">
@@ -96,7 +96,7 @@ export default {
 
           <div class="flex items-center justify-between mt-4">
             <PrimaryButton class="inline-flex items-center font-semibold transition ease-in-out duration-150 border border-transparent rounded hover:shadow focus:ring-opacity-40 focus:outline-opacity-60 disabled:opacity-25 select-none px-4 py-2 text-white bg-emerald-700 hover:bg-emerald-600 focus:bg-emerald-600 active:bg-emerald-800 focus:outline-emerald-500 hover:border-emerald-700 focus:border-emerald-700 focus:border-emerald-900">
-              Update
+              {{ $t('actions.forms.update') }}
             </PrimaryButton>
           </div>
         </form>
