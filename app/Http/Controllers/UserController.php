@@ -88,6 +88,8 @@ class UserController extends Controller
             'email' => $request->email,
         ]);
 
+        \DB::table('model_has_roles')->where('model_id', $user->id)->delete();
+        $user->assignRole($request->role);
         if ($user) {
             return Redirect::route('users.home');
         }

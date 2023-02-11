@@ -19,17 +19,12 @@ class PermissionSeeder extends Seeder
         ],
         'Manager' => [
             'permission' => [
-                'View users',
-                'Create user',
-                'Show user',
-                'Edit user',
-                'Delete user',
-                'View role and permission',
+                'users',
             ],
         ],
         'Member' => [
             'permission' => [
-                'View users',
+                'dashboard',
             ],
         ],
 

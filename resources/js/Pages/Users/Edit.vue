@@ -21,7 +21,7 @@ export default {
     const form = reactive({
       name: props.user.name,
       email: props.user.email,
-      role: props.role.name,
+      role: props.role[0],
     })
 
     const { t } = useI18n({
@@ -87,7 +87,7 @@ export default {
               {{ $t('role_permission.table.role') }}
             </InputLabel>
 
-            <select class="shadow border-gray-300 transition ease-in-out duration-150 disabled:bg-gray-100 readonly:bg-gray-50 focus:ring-primary focus:outline-none focus:border-primary focus-visible:ring-primary focus:ring-opacity-20 rounded-md px-4 py-2 w-full">
+            <select v-model="form.role" class="shadow border-gray-300 transition ease-in-out duration-150 disabled:bg-gray-100 readonly:bg-gray-50 focus:ring-primary focus:outline-none focus:border-primary focus-visible:ring-primary focus:ring-opacity-20 rounded-md px-4 py-2 w-full">
               <option v-for="value in roles" :key="value.id" :selected="value.name === role[0] ? true : false">
                 {{ value.name }}
               </option>
