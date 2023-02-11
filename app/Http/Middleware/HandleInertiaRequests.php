@@ -44,6 +44,7 @@ class HandleInertiaRequests extends Middleware
                 ? $request->user()->only('id', 'name', 'email')
             : null,
             'locale' => app()->getLocale(),
+            'roles' => $request->user() ? $request->user()->getRoleNames() : '',
         ]);
     }
 }
