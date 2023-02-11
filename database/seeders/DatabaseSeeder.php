@@ -15,7 +15,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->createInitialUsers();
-        $this->call(PermissionSeeder::class);
+        $this->call(PermissionsSeeder::class);
     }
 
     /**
