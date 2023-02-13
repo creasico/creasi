@@ -1,9 +1,7 @@
 <?php
 
 use App\Http\Controllers;
-use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\RolesController;
-use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Application;
 use Illuminate\Http\Request;
@@ -30,14 +28,14 @@ Route::middleware('auth')->group(function () {
         ]);
     })->name('home');
     Route::controller(Controllers\UserController::class)->prefix('users')->group(function () {
-        Route::get('', 'index')->name('users.home');
-        Route::get('create', 'create')->name('users.create');
+        Route::get('', 'index')->name('users.home')->can('users.view');
+        Route::get('create', 'create')->name('users.create')->can('users.create');
         Route::post('create', 'store')->name('users.store');
-        Route::get('{user}/show', 'show')->name('users.show');
-        Route::get('{user}/edit', 'edit')->name('users.edit');
+        Route::get('{user}/show', 'show')->name('users.show')->can('users.detail');;
+        Route::get('{user}/edit', 'edit')->name('users.edit')->can('users.update');
         Route::put('{user}/edit', 'update')->name('users.update');
-        Route::delete('{user}/delete', 'destroy')->name('users.destroy');
+        Route::delete('{user}/delete', 'destroy')->name('users.destroy')->can('users.delete');
     });
 
-    Route::resource('roles', RolesController::class);
+    Route::resource('roles', RolesController::class)->middleware('role:Owner');
 });
