@@ -1,21 +1,21 @@
 <script>
 import { Head, Link } from '@inertiajs/vue3'
+import { ref } from 'vue'
 import Layout from '../../Shared/Layout.vue'
 export default {
   components: { Head, Link },
   layout: Layout,
   props: { users: Array },
-  data() {
-    return {
-      currentId: '',
-      isVisible: false,
+  setup() {
+    const currentId = ref('')
+    const isVisible = ref(false)
+
+    const toggleVisible = (id) => {
+      isVisible.value = !isVisible.value
+      currentId.value = id
     }
-  },
-  methods: {
-    toggleVisible(id) {
-      this.isVisible = !this.isVisible
-      this.currentId = id
-    },
+
+    return { currentId, isVisible, toggleVisible }
   },
 }
 </script>

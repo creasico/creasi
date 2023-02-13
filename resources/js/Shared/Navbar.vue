@@ -1,10 +1,13 @@
 <script>
 import { Link } from '@inertiajs/vue3'
+import { ref } from 'vue'
 import ApplicationLogo from '../components/ApplicationLogo.vue'
 export default {
   components: { Link, ApplicationLogo },
-  data() {
-    return { visible: false }
+  setup() {
+    const visible = ref(false)
+
+    return { visible }
   },
 }
 </script>

@@ -4,8 +4,9 @@ export default {
   components: {
     Link,
   },
-  data() {
-    return { langs: ['id', 'en'] }
+  setup() {
+    const langs = ['id', 'en']
+    return { langs }
   },
 }
 </script>

@@ -2,6 +2,7 @@
 import { Head, Link, router } from '@inertiajs/vue3'
 import Swal from 'sweetalert2'
 import { useI18n } from 'vue-i18n'
+import { ref } from 'vue'
 import Layout from '../../Shared/Layout.vue'
 
 export default {
@@ -11,6 +12,14 @@ export default {
     user: Object,
   },
   setup() {
+    const currentId = ref('')
+    const isVisible = ref(false)
+
+    const toggleVisible = (id) => {
+      isVisible.value = !isVisible.value
+      currentId.value = id
+    }
+
     const { t } = useI18n({
       legacy: false,
     })
@@ -35,19 +44,7 @@ export default {
         }
       })
     }
-    return { handleDelete, t }
-  },
-  data() {
-    return {
-      currentId: '',
-      isVisible: false,
-    }
-  },
-  methods: {
-    toggleVisible(id) {
-      this.isVisible = !this.isVisible
-      this.currentId = id
-    },
+    return { handleDelete, t, currentId, isVisible, toggleVisible }
   },
 }
 </script>
