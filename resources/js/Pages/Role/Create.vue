@@ -44,7 +44,7 @@ export default {
 </script>
 
 <template>
-  <Head title="Creasi Internal - Create Role " />
+  <Head title="Create Role " />
   <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg sm:border border-gray-200">
     <div class="p-6 justify-center">
       <form @submit.prevent="handleSubmit">

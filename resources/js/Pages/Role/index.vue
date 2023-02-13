@@ -23,7 +23,7 @@ export default {
 </script>
 
 <template>
-  <Head title="Creasi Internal - Role & Permission " />
+  <Head title="Role & Permission " />
   <Link href="/roles/create" class="inline-flex items-center font-semibold transition ease-in-out duration-150 border border-transparent rounded hover:shadow focus:ring-opacity-40 focus:outline-opacity-60 disabled:opacity-25 select-none px-2 py-2 text-white bg-emerald-700 hover:bg-emerald-600 focus:bg-emerald-600 active:bg-emerald-800 focus:outline-emerald-500 hover:border-emerald-700 focus:border-emerald-700 focus:border-emerald-900">
     {{ $t('role_permission.button.create') }}
   </Link>

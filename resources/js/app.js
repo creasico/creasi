@@ -7,6 +7,7 @@ import localeMessages from './vue-i18n-locales.generated'
 
 createInertiaApp({
   resolve: name => resolvePageComponent(`./Pages/${name}.vue`, import.meta.glob('./Pages/**/*.vue')),
+  title: title => title ? `Creasi Internal System - ${title}` : 'Creasi Internal System',
   setup({ el, App, props, plugin }) {
     const i18n = createI18n({
       locale: props.initialPage.props.locale,

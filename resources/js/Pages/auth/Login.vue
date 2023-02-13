@@ -39,7 +39,7 @@ export default {
 </script>
 
 <template>
-  <Head title="Creasi Internal - Login" />
+  <Head title="Login" />
   <div v-if="status" class="font-medium text-sm text-green-600">
     {{ status }}
   </div>

@@ -45,7 +45,7 @@ export default {
 </script>
 
 <template>
-  <Head title="Creasi Internal - Edit role" />
+  <Head title="Edit role" />
   <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg sm:border border-gray-200">
     <div class="p-6 justify-center">
       <form @submit.prevent="handleSubmit">

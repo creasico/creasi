@@ -50,7 +50,7 @@ export default {
 </script>
 
 <template>
-  <Head title="Creasi Internal - Create Pengguna " />
+  <Head title="Create Pengguna " />
   <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg sm:border border-gray-200">
     <div class="p-6 justify-center">
       <div class="flex flex-col">

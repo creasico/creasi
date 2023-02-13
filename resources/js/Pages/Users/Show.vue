@@ -50,7 +50,7 @@ export default {
 </script>
 
 <template>
-  <Head title="Creasi Internal - Detail Pengguna " />
+  <Head title="Detail Pengguna " />
   <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg sm:border border-gray-200 mt-3">
     <table class="table">
       <thead>
