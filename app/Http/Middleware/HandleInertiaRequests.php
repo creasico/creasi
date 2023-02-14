@@ -45,6 +45,7 @@ class HandleInertiaRequests extends Middleware
             : null,
             'locale' => app()->getLocale(),
             'roles' => $request->user() ? $request->user()->getRoleNames() : '',
+            'permissions' => $request->user() ? $request->user()->getPermissionsViaRoles()->pluck('name') : [],
         ]);
     }
 }
