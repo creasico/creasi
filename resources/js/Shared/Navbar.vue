@@ -1,5 +1,5 @@
 <script>
-import { Link } from '@inertiajs/vue3'
+import { Link, usePage } from '@inertiajs/vue3'
 import { ref } from 'vue'
 import ApplicationLogo from '../components/ApplicationLogo.vue'
 export default {
@@ -7,7 +7,11 @@ export default {
   setup() {
     const visible = ref(false)
 
-    return { visible }
+    const can = (permission) => {
+      return usePage().props.permissions.includes(permission)
+    }
+
+    return { visible, can }
   },
 }
 </script>
@@ -20,7 +24,7 @@ export default {
       </header>
       <nav class="flex flex-col gap-1" role="navigation">
         <Link
-          v-if="$page.props.permissions[0]"
+          v-if="can('dashboard.view')"
           class="inline-flex text-gray-600 text-sm leading-7 items-center font-bold py-2 px-4
                                 leading-5 focus:outline-none transition duration-150 ease-in-out"
           :class="{ 'text-primary bg-emerald-50 border-emerald-600 focus:border-emerald-700 border-r-3': $page.url === '/' }" href="/"
@@ -28,7 +32,7 @@ export default {
           {{ $t('dashboard.routes.index') }}
         </Link>
         <Link
-          v-if="$page.props.permissions[1]"
+          v-if="can('users.view')"
           class="inline-flex text-gray-600 text-sm leading-7 items-center font-bold py-2 px-4
                             leading-5 focus:outline-none transition duration-150 ease-in-out"
           :class="{ 'text-primary bg-emerald-50 border-emerald-600 focus:border-emerald-700 border-r-3': $page.url === '/users' }" href="/users"
@@ -36,7 +40,7 @@ export default {
           {{ $t('users.routes.index') }}
         </Link>
         <Link
-          v-if="$page.props.permissions[6]"
+          v-if="can('role_permission.view')"
           class="inline-flex text-gray-600 text-sm leading-7 items-center font-bold py-2 px-4
                             leading-5 focus:outline-none transition duration-150 ease-in-out"
           :class="{ 'text-primary bg-emerald-50 border-emerald-600 focus:border-emerald-700 border-r-3': $page.url === '/roles' }" href="/roles"
