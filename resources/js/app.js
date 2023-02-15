@@ -22,7 +22,7 @@ createInertiaApp({
       .mixin({
         methods: {
           can(permission) {
-            return this.$page.props?.user?.permissions.includes(permission)
+            return this.$page.props?.auth?.user?.permissions?.includes(permission)
           },
         },
       })

@@ -31,7 +31,7 @@ Route::middleware('auth')->group(function () {
         Route::get('', 'index')->name('users.home')->can('users.view');
         Route::get('create', 'create')->name('users.create')->can('users.create');
         Route::post('create', 'store')->name('users.store');
-        Route::get('{user}/show', 'show')->name('users.show')->can('users.detail');;
+        Route::get('{user}/show', 'show')->name('users.show')->can('users.details');;
         Route::get('{user}/edit', 'edit')->name('users.edit')->can('users.update');
         Route::put('{user}/edit', 'update')->name('users.update');
         Route::delete('{user}/delete', 'destroy')->name('users.destroy')->can('users.delete');
