@@ -19,6 +19,13 @@ createInertiaApp({
     return createSSRApp({ render: () => h(App, props) })
       .use(plugin)
       .use(i18n)
+      .mixin({
+        methods: {
+          can(permission) {
+            return this.$page.props?.user?.permissions.includes(permission)
+          },
+        },
+      })
       .mount(el)
   },
 })

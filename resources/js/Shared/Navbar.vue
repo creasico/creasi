@@ -1,5 +1,5 @@
 <script>
-import { Link, usePage } from '@inertiajs/vue3'
+import { Link } from '@inertiajs/vue3'
 import { ref } from 'vue'
 import ApplicationLogo from '../components/ApplicationLogo.vue'
 export default {
@@ -7,11 +7,7 @@ export default {
   setup() {
     const visible = ref(false)
 
-    const can = (permission) => {
-      return usePage().props.permissions.includes(permission)
-    }
-
-    return { visible, can }
+    return { visible }
   },
 }
 </script>
