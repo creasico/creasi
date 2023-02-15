@@ -16,7 +16,7 @@ class PermissionsSeeder extends Seeder
     {
         $permissions = collect([
             'dashboard' => ['view'],
-            'users' => ['view', 'create', 'detail', 'update', 'delete'],
+            'users' => ['view', 'create', 'detail', 'edit', 'delete'],
             'role_permission' => ['view', 'create'],
         ]);
 

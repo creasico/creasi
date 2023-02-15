@@ -52,7 +52,7 @@ export default {
                 </svg>
                 <div @click="toggleVisible">
                   <div v-if="currentId === user.id && isVisible">
-                    <Link v-if="can('users.details')" :href="`/users/${user.id}/show`" class="block px-2 py-5 text-sm leading-5 text-green-600 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out">
+                    <Link v-if="can('users.detail')" :href="`/users/${user.id}/show`" class="block px-2 py-5 text-sm leading-5 text-green-600 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out">
                       {{ $t('actions.forms.detail') }}
                     </Link>
                   </div>

@@ -78,7 +78,7 @@ export default {
                 </svg>
                 <div @click="toggleVisible">
                   <div v-if="currentId === user.id && isVisible">
-                    <Link v-if="can('users.update')" :href="`/users/${user.id}/edit`" class="block px-2 py-5 text-sm leading-5 text-green-600 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out">
+                    <Link v-if="can('users.edit')" :href="`/users/${user.id}/edit`" class="block px-2 py-5 text-sm leading-5 text-green-600 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out">
                       {{ $t('actions.forms.edit') }}
                     </Link>
                     <button v-if="can('users.delete')" class="bg-transparent text-green-600 block px-2 py-5 text-sm leading-5 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out" @click="handleDelete(`${user.id}`)">
