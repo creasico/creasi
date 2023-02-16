@@ -25,6 +25,7 @@ export default {
     })
 
     const { t } = useI18n({
+      useScope: 'global',
       legacy: false,
     })
 

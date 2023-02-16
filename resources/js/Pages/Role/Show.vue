@@ -11,6 +11,7 @@ export default {
   },
   setup() {
     const { t } = useI18n({
+      useScope: 'global',
       legacy: false,
     })
 

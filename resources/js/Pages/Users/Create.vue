@@ -27,6 +27,7 @@ export default {
 
     const { t } = useI18n({
       legacy: false,
+      useScope: 'global',
     })
 
     const submit = () => {
