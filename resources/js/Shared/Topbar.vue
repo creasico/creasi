@@ -30,9 +30,9 @@ export default {
           </svg>
         </button>
         <div>
-          <select v-model="$i18n.locale" class="rounded-md py-2 px-6 items-center">
+          <select v-model="$i18n.locale" class="py-2 focus:outline-none items-center appearance-none" style="border:none">
             <option v-for="(lang, i) in langs" :key="`Lang${i}`" :value="lang">
-              {{ lang === 'id' ? 'ID' : 'EN' }}
+              {{ lang === 'id' ? '🇮🇩 Indonesia' : '🇬🇧 English' }}
             </option>
           </select>
         </div>
