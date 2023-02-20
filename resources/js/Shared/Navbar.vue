@@ -65,7 +65,8 @@ export default {
           <div class="rounded-md ring-1 ring-black ring-opacity-5 py-1 bg-white">
             <Link
               class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100
-                    focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out" href=""
+                    focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out" href="/users/account"
+              :class="{ 'text-primary bg-emerald-50 border-emerald-600 focus:border-emerald-700 border-r-3': $page.url === '/users/account' }"
             >
               {{ $t('dashboard.account') }}
             </Link>

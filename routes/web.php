@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\RolesController;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Application;
@@ -35,6 +36,7 @@ Route::middleware('auth')->group(function () {
         Route::get('{user}/edit', 'edit')->name('users.edit')->can('users.edit');
         Route::put('{user}/edit', 'update')->name('users.update');
         Route::delete('{user}/delete', 'destroy')->name('users.destroy')->can('users.delete');
+        Route::get('account','account');
     });
 
     Route::resource('roles', RolesController::class)->middleware('role:Owner');

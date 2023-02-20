@@ -103,4 +103,15 @@ class UserController extends Controller
             return Redirect::route('users.home');
         }
     }
+
+    public function account(Request $request)
+    {
+        $user = $request->user();
+        $role = $user->getRoleNames();
+
+        return Inertia::render('auth/Account', [
+            'user' => $user,
+            'role' => $role,
+        ]);
+    }
 }
