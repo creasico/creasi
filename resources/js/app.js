@@ -2,6 +2,7 @@ import { createSSRApp, h } from 'vue'
 import { createInertiaApp } from '@inertiajs/vue3'
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers'
 import { createI18n } from 'vue-i18n'
+import { createStore } from 'vuex'
 import Swal from 'sweetalert2'
 import localeMessages from './vue-i18n-locales.generated'
 
@@ -16,9 +17,23 @@ createInertiaApp({
       messages: localeMessages,
     })
 
+    const store = createStore({
+      state() {
+        return {
+          sidebar: null,
+        }
+      },
+      mutations: {
+        SET_SIDEBAR(state, params) {
+          state.sidebar = params
+        },
+      },
+    })
+
     return createSSRApp({ render: () => h(App, props) })
       .use(plugin)
       .use(i18n)
+      .use(store)
       .mixin({
         methods: {
           can(permission) {

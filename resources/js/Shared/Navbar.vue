@@ -1,13 +1,18 @@
 <script>
 import { Link } from '@inertiajs/vue3'
 import { ref } from 'vue'
+import { useI18n } from 'vue-i18n'
 import ApplicationLogo from '../components/ApplicationLogo.vue'
 export default {
   components: { Link, ApplicationLogo },
   setup() {
     const visible = ref(false)
+    const { t } = useI18n({
+      legacy: false,
+      useScope: 'global',
+    })
 
-    return { visible }
+    return { visible, t }
   },
 }
 </script>
@@ -20,26 +25,29 @@ export default {
       </header>
       <nav class="flex flex-col gap-1" role="navigation">
         <Link
-          v-if="can('dashboard.view')"
+          v-if="can('dashboard.view')" method="get" as="button"
           class="inline-flex text-gray-600 text-sm leading-7 items-center font-bold py-2 px-4
                                 leading-5 focus:outline-none transition duration-150 ease-in-out"
-          :class="{ 'text-primary bg-emerald-50 border-emerald-600 focus:border-emerald-700 border-r-3': $page.url === '/' }" href="/"
+          :class="{ 'text-primary bg-emerald-50 border-emerald-600 focus:border-emerald-700 border-r-3': $page.url === '/' }"
+          href="/" @click="$store.commit('SET_SIDEBAR', t('dashboard.routes.index')) "
         >
           {{ $t('dashboard.routes.index') }}
         </Link>
         <Link
-          v-if="can('users.view')"
+          v-if="can('users.view')" method="get" as="button"
           class="inline-flex text-gray-600 text-sm leading-7 items-center font-bold py-2 px-4
                             leading-5 focus:outline-none transition duration-150 ease-in-out"
-          :class="{ 'text-primary bg-emerald-50 border-emerald-600 focus:border-emerald-700 border-r-3': $page.url === '/users' }" href="/users"
+          :class="{ 'text-primary bg-emerald-50 border-emerald-600 focus:border-emerald-700 border-r-3': $page.url === '/users' }"
+          href="/users" @click="$store.commit('SET_SIDEBAR', t('users.routes.index')) "
         >
           {{ $t('users.routes.index') }}
         </Link>
         <Link
-          v-if="can('role_permission.view')"
+          v-if="can('role_permission.view')" method="get" as="button"
           class="inline-flex text-gray-600 text-sm leading-7 items-center font-bold py-2 px-4
                             leading-5 focus:outline-none transition duration-150 ease-in-out"
-          :class="{ 'text-primary bg-emerald-50 border-emerald-600 focus:border-emerald-700 border-r-3': $page.url === '/roles' }" href="/roles"
+          :class="{ 'text-primary bg-emerald-50 border-emerald-600 focus:border-emerald-700 border-r-3': $page.url === '/roles' }"
+          href="/roles" @click="$store.commit('SET_SIDEBAR', t('role_permission.routes.index')) "
         >
           {{ $t('role_permission.routes.index') }}
         </Link>

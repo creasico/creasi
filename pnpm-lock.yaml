@@ -26,6 +26,7 @@ specifiers:
   vite-plugin-windicss: ^1.8.10
   vue: ^3.2.45
   vue-i18n: '9'
+  vuex: ^4.0.2
   windicss: ^3.5.6
 
 dependencies:
@@ -40,6 +41,7 @@ dependencies:
   sweetalert2: 11.7.1
   vue: 3.2.47
   vue-i18n: 9.2.2_vue@3.2.47
+  vuex: 4.0.2_vue@3.2.47
 
 devDependencies:
   '@antfu/eslint-config-vue': 0.27.0_4vsywjlpuriuw3tl5oq6zy5a64
@@ -3970,6 +3972,15 @@ packages:
       '@vue/runtime-dom': 3.2.47
       '@vue/server-renderer': 3.2.47_vue@3.2.47
       '@vue/shared': 3.2.47
+    dev: false
+
+  /vuex/4.0.2_vue@3.2.47:
+    resolution: {integrity: sha512-M6r8uxELjZIK8kTKDGgZTYX/ahzblnzC4isU1tpmEuOIIKmV+TRdc+H4s8ds2NuZ7wpUTdGRzJRtoj+lI+pc0Q==}
+    peerDependencies:
+      vue: ^3.0.2
+    dependencies:
+      '@vue/devtools-api': 6.5.0
+      vue: 3.2.47
     dev: false
 
   /which-boxed-primitive/1.0.2:
