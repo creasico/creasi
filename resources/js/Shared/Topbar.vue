@@ -12,9 +12,6 @@ export default {
     sidebar() {
       return this.$store.state.sidebar
     },
-    current() {
-      return document.title
-    },
   },
 }
 </script>
