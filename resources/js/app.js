@@ -20,7 +20,7 @@ createInertiaApp({
     const store = createStore({
       state() {
         return {
-          sidebar: null,
+          sidebar: {},
         }
       },
       mutations: {

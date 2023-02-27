@@ -29,7 +29,10 @@ export default {
           class="inline-flex text-gray-600 text-sm leading-7 items-center font-bold py-2 px-4
                                 leading-5 focus:outline-none transition duration-150 ease-in-out"
           :class="{ 'text-primary bg-emerald-50 border-emerald-600 focus:border-emerald-700 border-r-3': $page.url === '/' }"
-          href="/" @click="$store.commit('SET_SIDEBAR', t('dashboard.routes.index')) "
+          href="/" @click="$store.commit('SET_SIDEBAR', {
+            id: 'Beranda',
+            en: 'Dashboard',
+          }) "
         >
           {{ $t('dashboard.routes.index') }}
         </Link>
@@ -38,7 +41,10 @@ export default {
           class="inline-flex text-gray-600 text-sm leading-7 items-center font-bold py-2 px-4
                             leading-5 focus:outline-none transition duration-150 ease-in-out"
           :class="{ 'text-primary bg-emerald-50 border-emerald-600 focus:border-emerald-700 border-r-3': $page.url === '/users' }"
-          href="/users" @click="$store.commit('SET_SIDEBAR', t('users.routes.index')) "
+          href="/users" @click="$store.commit('SET_SIDEBAR', {
+            id: 'Semua Pengguna',
+            en: 'All Users',
+          }) "
         >
           {{ $t('users.routes.index') }}
         </Link>
@@ -47,7 +53,10 @@ export default {
           class="inline-flex text-gray-600 text-sm leading-7 items-center font-bold py-2 px-4
                             leading-5 focus:outline-none transition duration-150 ease-in-out"
           :class="{ 'text-primary bg-emerald-50 border-emerald-600 focus:border-emerald-700 border-r-3': $page.url === '/roles' }"
-          href="/roles" @click="$store.commit('SET_SIDEBAR', t('role_permission.routes.index')) "
+          href="/roles" @click="$store.commit('SET_SIDEBAR', {
+            id: 'Peran dan Perizinan',
+            en: 'Role and Permission',
+          }) "
         >
           {{ $t('role_permission.routes.index') }}
         </Link>
