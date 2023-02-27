@@ -6,4 +6,5 @@ return [
     ],
 
     'welcome-notice' => 'Welcome Back :user',
+    'account' => 'Account',
 ];

@@ -2,6 +2,7 @@ import { resolve } from 'path'
 import { defineConfig } from 'vite'
 import laravel from 'laravel-vite-plugin'
 import windicss from 'vite-plugin-windicss'
+import vue from '@vitejs/plugin-vue'
 
 export default defineConfig({
   resolve: {
@@ -17,7 +18,16 @@ export default defineConfig({
       ],
       refresh: true,
     }),
+    vue({
+      template: {
+        transformAssetUrls: {
 
+          base: null,
+
+          includeAbsolute: false,
+        },
+      },
+    }),
     windicss(),
   ],
 })

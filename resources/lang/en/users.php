@@ -6,8 +6,13 @@ return [
     ],
 
     'table' => [
-        'name' => 'Nama',
+        'name' => 'Name',
         'email' => 'Email',
+        'result' => 'Data not found',
+    ],
+
+    'button' => [
+        'create' => 'Create user',
     ],
 
     'fields' => [],

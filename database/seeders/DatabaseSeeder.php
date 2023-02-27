@@ -4,6 +4,8 @@ namespace Database\Seeders;
 
 use App\Models\User;
 use Illuminate\Database\Seeder;
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 
 class DatabaseSeeder extends Seeder
 {
@@ -14,6 +16,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        $this->call(PermissionsSeeder::class);
         $this->createInitialUsers();
     }
 
@@ -28,9 +31,15 @@ class DatabaseSeeder extends Seeder
             return;
         }
 
-        User::factory()->create([
+        $user = User::factory()->create([
             'name' => 'creasi',
             'email' => 'admin@creasi.dev',
         ]);
+
+        $role = Role::create(['name' => 'Owner']);
+        $permissions = Permission::pluck('id', 'id')->all();
+        $role->syncPermissions($permissions);
+
+        $user->assignRole([$role->id]);
     }
 }

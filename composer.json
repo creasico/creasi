@@ -17,11 +17,14 @@
     "php": ">=8.0",
     "fakerphp/faker": "^1.9.1",
     "guzzlehttp/guzzle": "^7.2",
+    "inertiajs/inertia-laravel": "^0.6.9",
     "laravel/framework": "^9.24",
     "laravel/sanctum": "^3.0",
     "league/flysystem-aws-s3-v3": "^3.0",
+    "librenms/laravel-vue-i18n-generator": "^0.1.48",
     "predis/predis": "^2.0",
-    "sentry/sentry-laravel": "^3.1"
+    "sentry/sentry-laravel": "^3.1",
+    "spatie/laravel-permission": "^5.8"
   },
   "require-dev": {
     "barryvdh/laravel-debugbar": "^3.7",

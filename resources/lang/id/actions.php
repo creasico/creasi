@@ -10,7 +10,10 @@ return [
     'forms' => [
         'submit' => 'Kirim',
         'save' => 'Simpan',
+        'edit' => 'Edit',
         'update' => 'Perbarui',
         'cancel' => 'Batal',
+        'delete' => 'Hapus',
+        'detail' => 'Detil',
     ],
 ];

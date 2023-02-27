@@ -2,13 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\User\StoreRequest;
 use App\Models\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
+use Inertia\Inertia;
+use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
     public function __construct()
     {
         $this->authorizeResource(User::class);
+        // $this->middleware('role:Owner');
     }
 
     /**
@@ -16,7 +23,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('users.index');
+        $users = User::whereNot('id', Auth::user()->id)->get();
+
+        return Inertia::render('Users/index', ['users' => $users]);
     }
 
     /**
@@ -24,7 +33,24 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('users.form');
+        $roles = Role::all();
+
+        return Inertia::render('Users/Create', ['roles' => $roles]);
+    }
+
+    public function store(StoreRequest $request)
+    {
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => $request->password,
+        ]);
+
+        $user->assignRole($request->role);
+
+        if ($user) {
+            return Redirect::route('users.home');
+        }
     }
 
     /**
@@ -33,6 +59,59 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        return view('users.form');
+        $role = $user->getRoleNames();
+        $roles = Role::all();
+
+        return Inertia::render('Users/Edit', [
+            'user' => $user,
+            'role' => $role,
+            'roles' => $roles,
+        ]);
+    }
+
+    public function show(User $user)
+    {
+        return Inertia::render('Users/Show', [
+            'user' => $user,
+        ]);
+    }
+
+    public function update(Request $request, User $user)
+    {
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email',
+        ]);
+
+        $user->update([
+            'name' => $request->name,
+            'email' => $request->email,
+        ]);
+
+        \DB::table('model_has_roles')->where('model_id', $user->id)->delete();
+        $user->assignRole($request->role);
+        if ($user) {
+            return Redirect::route('users.home');
+        }
+    }
+
+    public function destroy(User $user)
+    {
+        if ($user) {
+            $user->delete();
+
+            return Redirect::route('users.home');
+        }
+    }
+
+    public function account(Request $request)
+    {
+        $user = $request->user();
+        $role = $user->getRoleNames();
+
+        return Inertia::render('auth/Account', [
+            'user' => $user,
+            'role' => $role,
+        ]);
     }
 }

@@ -1,9 +1,13 @@
 <?php
 
 use App\Http\Controllers;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\RolesController;
 use App\Providers\RouteServiceProvider;
+use Illuminate\Foundation\Application;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Inertia\Inertia;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,15 +19,25 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 Route::middleware('auth')->group(function () {
     Route::get(RouteServiceProvider::HOME, function (Request $request) {
-        return $request->isJson() ? response(404) : view('dashboard');
+        return Inertia::render('auth/Dashboard', [
+            'canLogin' => Route::has('login'),
+            'canRegister' => Route::has('register'),
+            'laravelVersion' => Application::VERSION,
+            'phpVersion' => PHP_VERSION,
+        ]);
     })->name('home');
-
     Route::controller(Controllers\UserController::class)->prefix('users')->group(function () {
-        Route::get('', 'index')->name('users.home');
-        Route::get('create', 'create')->name('users.create');
-        Route::get('{user}', 'edit')->name('users.edit');
+        Route::get('', 'index')->name('users.home')->can('users.view');
+        Route::get('create', 'create')->name('users.create')->can('users.create');
+        Route::post('create', 'store')->name('users.store');
+        Route::get('{user}/show', 'show')->name('users.show')->can('users.detail');;
+        Route::get('{user}/edit', 'edit')->name('users.edit')->can('users.edit');
+        Route::put('{user}/edit', 'update')->name('users.update');
+        Route::delete('{user}/delete', 'destroy')->name('users.destroy')->can('users.delete');
+        Route::get('account','account');
     });
+
+    Route::resource('roles', RolesController::class)->middleware('role:Owner');
 });

@@ -2,8 +2,9 @@
 
 return [
     'routes' => [
-        'index' => 'Dashboard',
+        'index' => 'Beranda',
     ],
 
     'welcome-notice' => 'Selamat datang :user',
+    'account' => 'Akun',
 ];
