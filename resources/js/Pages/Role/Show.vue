@@ -77,7 +77,14 @@ export default {
                 </svg>
                 <div @click="toggleVisible">
                   <div v-if="currentId === role.id && isVisible">
-                    <Link :href="`/roles/${role.id}/edit`" class="block px-2 py-5 text-sm leading-5 text-green-600 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out">
+                    <Link
+                      method="get" as="button"
+                      :href="`/roles/${role.id}/edit`"
+                      class="block px-2 py-5 text-sm leading-5 text-green-600 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out" @click="$store.commit('SET_SIDEBAR', {
+                        id: 'Edit Peran & Perizinan',
+                        en: 'Edit Role & Permission',
+                      })"
+                    >
                       {{ $t('actions.forms.edit') }}
                     </Link>
                     <button class="bg-transparent text-green-600 block px-2 py-5 text-sm leading-5 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out" @click="handleDelete(`${role.id}`)">
