@@ -1,8 +1,6 @@
 FROM php:8.2-fpm
 
 ARG NODE_VERSION=18
-ARG user
-ARG uid
 
 RUN apt-get update && apt-get install -y \
     git \
@@ -14,6 +12,7 @@ RUN apt-get update && apt-get install -y \
     zip \
     unzip \
     wget \
+    mariadb-client \
     && curl -sLS https://deb.nodesource.com/setup_$NODE_VERSION.x | bash - \
     && apt-get install -y nodejs \
     && npm install -g npm \
@@ -24,6 +23,12 @@ ENV COMPOSER_ALLOW_SUPERUSER=1
 ENV PORT=8080
 ENV HOST=0.0.0.0
 
+# RUN apk add --no-cache nginx wget
+
+RUN sh -c "wget http://getcomposer.org/composer.phar && chmod a+x composer.phar && mv composer.phar /usr/local/bin/composer"
+
+RUN docker-php-ext-install pdo_mysql mbstring zip
+
 ENV DB_CONNECTION=mysql
 ENV DB_HOST=db
 ENV DB_PORT=3306
@@ -31,32 +36,19 @@ ENV DB_DATABASE=creasi
 ENV DB_USERNAME=creasi
 ENV DB_PASSWORD=password
 
-RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd zip
+WORKDIR /app
 
-RUN sh -c "wget http://getcomposer.org/composer.phar && chmod a+x composer.phar && mv composer.phar /usr/local/bin/composer"
+COPY . /app
 
-# Create system user to run Composer and Artisan Commands
-RUN useradd -G www-data,root -u $uid -d /home/$user $user
-RUN mkdir -p /home/$user/.composer && \
-    chown -R $user:$user /home/$user
+RUN composer install --no-dev
 
-# Set working directory
-WORKDIR /var/www
+# populate database and seeder
+RUN php artisan migrate --seed --force
 
-USER $user
+RUN npm install
 
+RUN npm run build
 
-# COPY . /app
+EXPOSE 8080
 
-# RUN composer install --no-dev
-
-# # populate database and seeder
-# RUN php artisan migrate --seed --force
-
-# RUN npm install
-
-# RUN npm run build
-
-# EXPOSE 8080
-
-# CMD ["php", "artisan", "serve", "--host=0.0.0.0", "--port=8080"]
+CMD ["php", "artisan", "serve", "--host=0.0.0.0", "--port=8080"]
