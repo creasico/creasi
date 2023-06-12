@@ -42,6 +42,9 @@ COPY . /app
 
 RUN composer install --no-dev
 
+# populate database and seeder
+RUN php artisan migrate --seed
+
 RUN npm install
 
 RUN npm run build
