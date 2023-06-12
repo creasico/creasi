@@ -28,6 +28,14 @@ RUN sh -c "wget http://getcomposer.org/composer.phar && chmod a+x composer.phar 
 
 RUN docker-php-ext-install pdo_mysql mbstring zip
 
+RUN apt-get update && apt-get install -y mariadb-client
+
+ENV DB_HOST=db
+ENV DB_PORT=3306
+ENV DB_DATABASE=creasi
+ENV DB_USERNAME=creasi
+ENV DB_PASSWORD=password
+
 WORKDIR /app
 
 COPY . /app
