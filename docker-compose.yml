@@ -15,7 +15,7 @@ services:
       - ./:/var/www
     networks:
       - creasi
-    command: sh -c "php artisan migrate --seed --force && php artisan serve --host=0.0.0.0 --port=80"
+    command: sh -c "php artisan migrate --seed --force && php artisan serve --host=0.0.0.0 --port=8080"
 
   mysql:
     container_name: creasi-mysql
@@ -55,9 +55,9 @@ services:
     container_name: creasi-nginx
     restart: unless-stopped
     ports:
-      - 80:80
+      - 8080:80
     volumes:
-      - ./:/var/www
+      - ./:/app
       - ./docker-compose/nginx:/etc/nginx/conf.d/
     networks:
       - creasi
