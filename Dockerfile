@@ -30,7 +30,7 @@ RUN sh -c "wget http://getcomposer.org/composer.phar && chmod a+x composer.phar 
 RUN docker-php-ext-install pdo_mysql mbstring zip
 
 ENV DB_CONNECTION=mysql
-ENV DB_HOST=db
+ENV DB_HOST=mysql
 ENV DB_PORT=3306
 ENV DB_DATABASE=creasi
 ENV DB_USERNAME=creasi
@@ -42,13 +42,10 @@ COPY . /app
 
 RUN composer install --no-dev
 
-# populate database and seeder
-RUN php artisan migrate --seed --force
-
 RUN npm install
 
 RUN npm run build
 
 EXPOSE 8080
 
-CMD ["php", "artisan", "serve", "--host=0.0.0.0", "--port=8080"]
+# CMD ["php", "artisan", "serve", "--host=0.0.0.0", "--port=8080"]
