@@ -1,22 +1,21 @@
 name: Code Quality
 
 on:
-  schedule: # scheduled to run at 23.00 on Saturday (UTC), means 6.00 on Monday (WIB)
-    - cron: '0 23 * * 6'
+  # schedule: # scheduled to run at 23.00 on Saturday (UTC), means 6.00 on Monday (WIB)
+  #   - cron: '0 23 * * 6'
   push:
     branches: [main]
-    paths: ['**.php', '**.js', '**.ts', '**.vue']
   pull_request:
     branches: [main]
-    types: [opened, synchronize, reopened]
-    paths: ['**.php', '**.js', '**.ts', '**.vue']
 
 env:
-  APP_NAME: Creasi Skeleton
+  APP_NAME: Creasi Internal
   APP_ENV: testing
   # AWS_ENDPOINT: 'https://is3.cloudhost.id'
   # AWS_DEFAULT_REGION: 'ap-southeast-3'
   # AWS_BUCKET: creasi-staging
+  CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+  CC_TEST_REPORTER_URL: ${{ vars.CC_TEST_REPORTER_URL }}
   MAIL_FROM_ADDRESS: devtest@creasi.dev
   SENTRY_LARAVEL_DSN: ${{ secrets.SENTRY_DSN }}
   SENTRY_TRACE_QUEUE_ENABLED: true
@@ -141,6 +140,22 @@ jobs:
       - name: Run unit tests
         run: php artisan test
 
+      - name: Generate reports for CodeClimate
+        env:
+          COVERAGE_FILE: tests/reports/clover.xml
+          CODECLIMATE_REPORT: ${{ github.workspace }}/tests/reports/codeclimate.${{ matrix.php }}.json
+        run: |
+          curl -LSs $CC_TEST_REPORTER_URL > ./cc-test-reporter && chmod +x ./cc-test-reporter
+          ./cc-test-reporter format-coverage -t clover -o $CODECLIMATE_REPORT $COVERAGE_FILE
+
+      - name: Upload tests reports
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-reports
+          path: |
+            tests/coverage
+            tests/reports
+
   e2e:
     runs-on: ubuntu-latest
     name: Integration Test on BrowserStack
@@ -251,6 +266,24 @@ jobs:
         with:
           local-testing: stop
 
+  reports:
+    name: Report Test Coverages
+    needs: units
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download test reports
+        uses: actions/download-artifact@v3
+        with:
+          name: test-reports
+          path: tests
+
+      - name: Report to CodeClimate
+        run: |
+          curl -LSs $CC_TEST_REPORTER_URL > ./cc-test-reporter && chmod +x ./cc-test-reporter
+          ./cc-test-reporter sum-coverage -o - tests/reports/codeclimate.*.json | ./cc-test-reporter upload-coverage --input -
+
+
   deploy:
     runs-on: ubuntu-latest
     name: Deploy
@@ -280,7 +313,6 @@ jobs:
         run: |
           [[ ! -d $HOME/.ssh ]] && mkdir $HOME/.ssh
           echo "${{ secrets.STAGING_SERVER_RSAKEY }}" >> $HOME/.ssh/id_rsa
-          echo "${{ secrets.STAGING_SERVER_SSH_HOSTS }}" >> $HOME/.ssh/known_hosts
           echo "${{ secrets.STAGING_SERVER_SSH_CONFIG }}" >> $HOME/.ssh/config
           chmod 600 $HOME/.ssh/* && ls -al $HOME/.ssh/
           git config user.name "Creasi.HQ" && git config user.email "dev@creasi.co"
