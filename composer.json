@@ -1,6 +1,6 @@
 {
-  "name": "creasi/skeleton",
-  "description": "Application Project Skeleton for Creasi.co",
+  "name": "creasi/creasi",
+  "description": "[WIP] Our internal management system",
   "keywords": ["project", "laravel"],
   "license": "MIT",
   "type": "project",
@@ -11,30 +11,28 @@
     }
   ],
   "support": {
-    "source": "https://github.com/creasico/laravel-project"
+    "source": "https://github.com/creasico/creasi"
   },
   "require": {
-    "php": ">=8.0",
+    "php": ">=8.1",
     "fakerphp/faker": "^1.9.1",
     "guzzlehttp/guzzle": "^7.2",
-    "laravel/framework": "^9.24",
+    "laravel/framework": "^10.0",
     "laravel/sanctum": "^3.0",
-    "league/flysystem-aws-s3-v3": "^3.0",
-    "predis/predis": "^2.0",
     "sentry/sentry-laravel": "^3.1"
   },
   "require-dev": {
     "barryvdh/laravel-debugbar": "^3.7",
-    "creasi/dusk-browserstack": "^0.0.2",
+    "creasi/dusk-browserstack": "^0.1.2",
     "deployer/deployer": "^7.0",
     "laravel/dusk": "^7.0",
     "laravel/pint": "^1.1",
     "laravel/telescope": "^4.9",
     "laravel/tinker": "^2.7",
     "mockery/mockery": "^1.4.4",
-    "nunomaduro/collision": "^6.1",
-    "phpunit/phpunit": "^9.5.10",
-    "spatie/laravel-ignition": "^1.0"
+    "nunomaduro/collision": "^7.5",
+    "phpunit/phpunit": "^10.0",
+    "spatie/laravel-ignition": "^2.1"
   },
   "autoload": {
     "psr-4": {
@@ -51,7 +49,8 @@
   "scripts": {
     "post-autoload-dump": [
       "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
-      "@php artisan package:discover --ansi"
+      "@php artisan package:discover --ansi",
+      "@php artisan vendor:publish --tag creasi-config --ansi"
     ],
     "post-root-package-install": [
       "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
@@ -59,7 +58,9 @@
     "post-create-project-cmd": [
       "@php artisan key:generate --ansi"
     ],
-    "dep": "vendor/bin/dep",
+    "dep": [
+      "vendor/bin/dep -f scripts/deploy.php"
+    ],
     "fix": [
       "pint --preset laravel"
     ],
@@ -84,7 +85,10 @@
   "config": {
     "optimize-autoloader": true,
     "preferred-install": "dist",
-    "sort-packages": true
+    "sort-packages": true,
+    "allow-plugins": {
+      "php-http/discovery": true
+    }
   },
   "minimum-stability": "dev",
   "prefer-stable": true
