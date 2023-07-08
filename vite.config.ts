@@ -1,23 +1,59 @@
-import { resolve } from 'path'
-import { defineConfig } from 'vite'
+import { resolve } from 'node:path'
+import { defineConfig, loadEnv } from 'vite'
 import laravel from 'laravel-vite-plugin'
 import windicss from 'vite-plugin-windicss'
 
-export default defineConfig({
-  resolve: {
-    alias: {
-      '~/': `${resolve(__dirname, 'resources/client')}/`,
+export default defineConfig(({ mode }) => {
+  const env = loadEnv(mode, '.', ['APP', 'VITE'])
+
+  const rootdir = 'resources/client'
+
+  return {
+    resolve: {
+      alias: {
+        '~/': `${resolve(__dirname, 'resources/client')}/`,
+      },
     },
-  },
 
-  plugins: [
-    laravel({
-      input: [
-        'resources/client/app.ts',
-      ],
-      refresh: true,
-    }),
+    build: {
+      reportCompressedSize: false,
+      chunkSizeWarningLimit: 2000,
+      rollupOptions: {
+        output: {
+          /**
+           * @see https://rollupjs.org/configuration-options/#output-manualchunks
+           */
+          manualChunks: (id) => {
+            if (id.includes('node_modules'))
+              return 'vendor'
+          },
+        },
+      },
+    },
 
-    windicss(),
-  ],
+    define: {
+      'import.meta.env.APP_NAME': JSON.stringify(env.APP_NAME),
+      'import.meta.env.APP_LOCALE': JSON.stringify(env.APP_LOCALE),
+      'import.meta.env.APP_URL': JSON.stringify(env.APP_URL),
+      'import.meta.env.APP_ENV': JSON.stringify(env.APP_ENV),
+    },
+
+    plugins: [
+      /**
+       * @see https://laravel.com/docs/vite
+       */
+      laravel({
+        input: [
+          `${rootdir}/app.ts`,
+        ],
+        valetTls: env.APP_ENV === 'local' && env.APP_URL.startsWith('https://'),
+        // refresh: true,
+      }),
+
+      /**
+       * @see https://windicss.org/integrations/vite.html
+       */
+      windicss(),
+    ],
+  }
 })
