@@ -104,7 +104,7 @@ jobs:
           extensions: curl, dom, gd, igbinary, imagick, intl, libxml, mbstring, pcntl, pdo, pdo_pgsql, redis, zip
           ini-values: error_reporting=E_ALL
           tools: composer:v2
-          coverage: none
+          coverage: xdebug
         env:
           REDIS_CONFIGURE_OPTS: --enable-redis --enable-redis-igbinary
 
@@ -282,7 +282,6 @@ jobs:
         run: |
           curl -LSs $CC_TEST_REPORTER_URL > ./cc-test-reporter && chmod +x ./cc-test-reporter
           ./cc-test-reporter sum-coverage -o - tests/reports/codeclimate.*.json | ./cc-test-reporter upload-coverage --input -
-
 
   deploy:
     runs-on: ubuntu-latest
